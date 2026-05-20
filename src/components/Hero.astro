@@ -95,6 +95,18 @@ const reassurances = [
               <label>Ne pas remplir : <input name="bot-field" /></label>
             </p>
 
+            {/* Attribution Ads : rempli côté client au chargement de la page */}
+            <input type="hidden" name="gclid" data-track="gclid" value="" />
+            <input type="hidden" name="utm_source" data-track="utm_source" value="" />
+            <input type="hidden" name="utm_medium" data-track="utm_medium" value="" />
+            <input type="hidden" name="utm_campaign" data-track="utm_campaign" value="" />
+            <input type="hidden" name="utm_term" data-track="utm_term" value="" />
+            <input type="hidden" name="utm_content" data-track="utm_content" value="" />
+            <input type="hidden" name="fbclid" data-track="fbclid" value="" />
+            <input type="hidden" name="msclkid" data-track="msclkid" value="" />
+            <input type="hidden" name="referrer" data-track="referrer" value="" />
+            <input type="hidden" name="landing_url" data-track="landing_url" value="" />
+
             <div>
               <label
                 for="audit-nom"
@@ -383,5 +395,66 @@ const reassurances = [
         );
       }
     });
+  }
+
+  // Attribution Google Ads / UTM : remplit les inputs cachés au chargement.
+  // Persistance via sessionStorage pour survivre aux navigations internes
+  // (ex. allers-retours vers Hestia). Stratégie last-touch : un nouveau param
+  // dans l'URL écrase la valeur stockée. landing_url et referrer gardent la
+  // première valeur vue dans la session.
+  const TRACK_KEYS = [
+    "gclid",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "fbclid",
+    "msclkid",
+  ];
+  const STORAGE_KEY = "gp_attr";
+
+  const loadStored = (): Record<string, string> => {
+    try {
+      return JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+    } catch {
+      return {};
+    }
+  };
+  const saveStored = (data: Record<string, string>) => {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch {
+      /* sessionStorage indisponible (mode privé strict) : silencieux */
+    }
+  };
+
+  const initAttribution = () => {
+    const params = new URLSearchParams(window.location.search);
+    const stored = loadStored();
+    const merged = { ...stored };
+
+    TRACK_KEYS.forEach((k) => {
+      const fromUrl = params.get(k);
+      if (fromUrl) merged[k] = fromUrl;
+    });
+
+    if (!merged.landing_url) merged.landing_url = window.location.href;
+    if (!merged.referrer && document.referrer) merged.referrer = document.referrer;
+
+    saveStored(merged);
+
+    [...TRACK_KEYS, "landing_url", "referrer"].forEach((k) => {
+      const el = document.querySelector<HTMLInputElement>(
+        `input[data-track="${k}"]`
+      );
+      if (el) el.value = merged[k] || "";
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAttribution);
+  } else {
+    initAttribution();
   }
 </script>
