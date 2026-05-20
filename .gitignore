@@ -29,3 +29,4 @@ pnpm-debug.log*
 
 # Heavy binaries: keep client briefs as PDF out of git history
 docs/*.pdf
+docs/*.md
