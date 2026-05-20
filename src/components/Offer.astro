@@ -1,0 +1,184 @@
+---
+import { Image } from "astro:assets";
+import diffuseur from "../assets/diffuseur.jpg";
+
+const includes = [
+  "Le diffuseur connecté installé sur votre lieu",
+  "Votre parfum sur-mesure, en huile pure",
+  "Recharges et suivi compris",
+];
+---
+
+<section
+  data-offer
+  aria-labelledby="offer-title"
+  class="relative bg-[var(--color-ivory)]"
+>
+  <div class="mx-auto max-w-[1480px] px-6 md:px-10">
+    <div class="border-t border-[var(--color-border)] py-24 md:py-32 lg:py-40">
+      <div
+        class="grid grid-cols-1 items-center gap-y-14 md:grid-cols-12 md:gap-x-14 lg:gap-x-20"
+      >
+        <div class="md:col-span-6 lg:col-span-5">
+          <div
+            data-offer-visual
+            style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+            class="overflow-hidden rounded-xl border border-[var(--color-border)] bg-white"
+          >
+            <Image
+              src={diffuseur}
+              alt="Diffuseur connecté Guilbert Parfums"
+              widths={[480, 768, 1024]}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-contain"
+            />
+          </div>
+        </div>
+
+        <div class="md:col-span-6 lg:col-span-6 lg:col-start-7">
+          <span
+            data-offer-reveal
+            style="opacity:0;transform:translateY(16px);will-change:opacity,transform;"
+            class="block text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite)]"
+          >
+            [07] · L'offre
+          </span>
+
+          <h2
+            id="offer-title"
+            data-offer-reveal
+            style="opacity:0;transform:translateY(22px);will-change:opacity,transform;"
+            class="mt-8 font-display font-light leading-[1.05] tracking-[-0.015em] text-[clamp(2rem,4.6vw,3.5rem)] text-[var(--color-ink)]"
+          >
+            Un diffuseur connecté, posé chez vous.
+          </h2>
+
+          <p
+            data-offer-reveal
+            style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+            class="mt-6 max-w-[46ch] text-[1.0625rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.125rem]"
+          >
+            Un appareil discret, fabriqué pour tenir, piloté depuis votre
+            application. Aucun investissement matériel à l'achat : tout passe
+            par l'abonnement.
+          </p>
+
+          <div
+            data-offer-reveal
+            style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+            class="mt-10 flex items-baseline gap-3 border-t border-[var(--color-border)] pt-8"
+          >
+            <span
+              class="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-light leading-none text-[var(--color-bordeaux)]"
+            >
+              À partir de 65&nbsp;€
+            </span>
+            <span class="text-[14px] tracking-[0.04em] text-[var(--color-graphite)]">
+              / mois
+            </span>
+          </div>
+          <p
+            data-offer-reveal
+            style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+            class="mt-3 text-[13px] text-[var(--color-stone)]"
+          >
+            Abonnement mensuel. Le montant exact se cale pendant l'audit, selon
+            votre lieu et vos volumes.
+          </p>
+
+          <ul
+            data-offer-reveal
+            style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+            class="mt-8 space-y-3"
+          >
+            {includes.map((item) => (
+              <li class="flex items-start gap-3 text-[15px] text-[var(--color-ink-soft)]">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--color-ink)"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  class="mt-[3px] shrink-0"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div
+            data-offer-reveal
+            style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+            class="mt-10"
+          >
+            <a
+              href="#audit"
+              class="group inline-flex items-center gap-3 bg-[var(--color-ink)] px-7 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-white transition-colors duration-300 hover:bg-black"
+            >
+              <span>Réserver l'audit offert</span>
+              <svg
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                class="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0 5h14m0 0L10 1m4 4l-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.4"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion) {
+    document
+      .querySelectorAll<HTMLElement>("[data-offer-visual], [data-offer-reveal]")
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  } else {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "[data-offer]",
+        start: "top 76%",
+        once: true,
+      },
+      defaults: { ease: "power3.out" },
+    });
+
+    tl.to(
+      "[data-offer-visual]",
+      { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" },
+      0
+    ).to(
+      "[data-offer-reveal]",
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 },
+      0.25
+    );
+  }
+</script>

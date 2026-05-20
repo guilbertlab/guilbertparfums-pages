@@ -1,0 +1,170 @@
+---
+type Qa = { q: string; a: string };
+
+const faqs: Qa[] = [
+  {
+    q: "Combien ça coûte ?",
+    a: "À partir de 65 €/mois, en abonnement mensuel. Le montant exact dépend de votre lieu, de la surface à couvrir et de vos volumes. Nous le calons ensemble pendant l'audit offert, sans engagement.",
+  },
+  {
+    q: "Et si le parfum ne plaît pas ?",
+    a: "Nous affinons jusqu'à ce que ce soit juste. La signature n'est jamais figée : elle évolue avec vos retours et avec votre activité. Vous ne restez pas coincé avec un accord qui ne vous ressemble pas.",
+  },
+  {
+    q: "J'ai déjà testé un concurrent, ça n'a pas pris.",
+    a: "C'est souvent une question de qualité de produit et de réglage. Nous travaillons en huile de parfum pure, pas en fragrance diluée, et le diffuseur se pilote par zones et par horaires. Nous calibrons pour votre lieu, pas avec un réglage unique.",
+  },
+  {
+    q: "Je suis déjà engagé avec un prestataire.",
+    a: "Nous regardons votre échéance ensemble et nous préparons la transition pour qu'il n'y ait pas de coupure. L'audit ne vous engage à rien : il sert justement à voir si le changement vaut le coup.",
+  },
+];
+---
+
+<section
+  data-faq
+  aria-labelledby="faq-title"
+  class="relative bg-[var(--color-ivory)]"
+>
+  <div class="mx-auto max-w-[1480px] px-6 md:px-10">
+    <div class="border-t border-[var(--color-border)] py-24 md:py-32 lg:py-40">
+      <div class="grid grid-cols-1 gap-y-12 md:grid-cols-12 md:gap-x-14 lg:gap-x-20">
+        <div class="md:col-span-4 lg:col-span-3">
+          <span
+            data-faq-reveal
+            style="opacity:0;transform:translateY(14px);will-change:opacity,transform;"
+            class="block text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite)]"
+          >
+            [09] · Questions
+          </span>
+          <h2
+            id="faq-title"
+            data-faq-reveal
+            style="opacity:0;transform:translateY(22px);will-change:opacity,transform;"
+            class="mt-8 font-display font-light leading-[1.06] tracking-[-0.015em] text-[clamp(2rem,4.4vw,3.25rem)] text-[var(--color-ink)]"
+          >
+            Les vraies questions.
+          </h2>
+        </div>
+
+        <div class="md:col-span-8 lg:col-span-9">
+          <ul>
+            {faqs.map((f, i) => (
+              <li
+                data-faq-item
+                style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
+                class:list={[
+                  "border-[var(--color-border)]",
+                  i === 0 ? "border-y" : "border-b",
+                ]}
+              >
+                <details class="faq-details group">
+                  <summary
+                    class="flex cursor-pointer list-none items-center justify-between gap-8 py-7 md:py-8"
+                  >
+                    <span class="font-display text-[1.25rem] font-light tracking-[-0.01em] text-[var(--color-ink)] md:text-[1.5rem]">
+                      {f.q}
+                    </span>
+                    <span
+                      class="faq-icon relative h-4 w-4 shrink-0 text-[var(--color-ink)]"
+                      aria-hidden="true"
+                    >
+                      <span class="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current"></span>
+                      <span class="faq-icon-v absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current transition-transform duration-300"></span>
+                    </span>
+                  </summary>
+                  <div class="faq-answer overflow-hidden">
+                    <p class="max-w-[64ch] pb-8 text-[1rem] font-light leading-[1.65] text-[var(--color-ink-soft)] md:text-[1.0625rem]">
+                      {f.a}
+                    </p>
+                  </div>
+                </details>
+              </li>
+            ))}
+          </ul>
+
+          <p
+            data-faq-reveal
+            style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+            class="mt-12 text-[15px] text-[var(--color-graphite)]"
+          >
+            Une autre question ?{" "}
+            <a
+              href="tel:+33686537497"
+              class="font-medium text-[var(--color-ink)] underline decoration-[var(--color-border)] decoration-1 underline-offset-[5px] transition-colors hover:decoration-[var(--color-ink)]"
+            >
+              Appel gratuit
+            </a>
+            {" "}· ou demandez votre{" "}
+            <a
+              href="#audit"
+              class="font-medium text-[var(--color-ink)] underline decoration-[var(--color-border)] decoration-1 underline-offset-[5px] transition-colors hover:decoration-[var(--color-ink)]"
+            >
+              audit offert
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-details summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-details[open] .faq-icon-v {
+    transform: translateX(-50%) scaleY(0);
+  }
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 350ms ease;
+  }
+  .faq-details[open] .faq-answer {
+    grid-template-rows: 1fr;
+  }
+  .faq-answer > p {
+    min-height: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-answer {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion) {
+    document
+      .querySelectorAll<HTMLElement>("[data-faq-reveal], [data-faq-item]")
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  } else {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "[data-faq]",
+        start: "top 78%",
+        once: true,
+      },
+      defaults: { ease: "power3.out" },
+    });
+
+    tl.to("[data-faq-reveal]", { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 }, 0)
+      .to(
+        "[data-faq-item]",
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 },
+        0.3
+      );
+  }
+</script>

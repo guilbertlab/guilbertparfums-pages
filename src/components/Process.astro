@@ -1,0 +1,279 @@
+---
+import { Image } from "astro:assets";
+import processBg from "../assets/process-bg.png";
+
+type Step = {
+  n: string;
+  title: string;
+  desc: string;
+};
+
+const steps: Step[] = [
+  {
+    n: "01",
+    title: "Audit olfactif offert",
+    desc: "Nous vous rencontrons et écoutons votre univers : votre histoire, ce que vous voulez faire ressentir à ceux qui passent votre porte. À distance ou au showroom, sans engagement.",
+  },
+  {
+    n: "02",
+    title: "Composition au Pays de Grasse",
+    desc: "Nos parfumeurs élaborent plusieurs pistes en huile de parfum pure, au cœur du Pays de Grasse. Nous affinons avec vous jusqu'à l'accord qui est vraiment vous.",
+  },
+  {
+    n: "03",
+    title: "Installation & pilotage",
+    desc: "Nous installons et calibrons les diffuseurs sur votre lieu, partout en France. Intensité, horaires et zones se règlent depuis l'application dès le premier jour.",
+  },
+  {
+    n: "04",
+    title: "Suivi & évolution",
+    desc: "Nous rechargeons, nous ajustons selon vos retours, et la signature évolue avec votre activité. Quand vous voulez la commercialiser, nous déclinons la gamme.",
+  },
+];
+---
+
+<section
+  data-process
+  aria-labelledby="process-title"
+  class="relative isolate overflow-hidden bg-[var(--color-ivory)]"
+>
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <Image
+      src={processBg}
+      alt=""
+      widths={[768, 1280, 1920, 2537]}
+      sizes="100vw"
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
+    <div
+      class="absolute inset-0 [background:linear-gradient(to_bottom,rgba(245,241,234,0.62),rgba(245,241,234,0.34)_50%,rgba(245,241,234,0.72))]"
+    >
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-[1480px] px-6 md:px-10">
+    <div class="border-t border-[var(--color-border)] py-24 md:py-32 lg:py-40">
+      <div class="grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-14 lg:gap-x-20">
+        <div class="md:col-span-3 lg:col-span-2">
+          <span
+            data-process-eyebrow
+            style="opacity:0;transform:translateY(14px);will-change:opacity,transform;"
+            class="block text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite)]"
+          >
+            [06] · Le processus
+          </span>
+        </div>
+
+        <div class="md:col-span-9 lg:col-span-10">
+          <h2
+            id="process-title"
+            class="font-display font-light leading-[1.06] tracking-[-0.015em] text-[clamp(2.25rem,5.4vw,4.5rem)] text-[var(--color-ink)]"
+          >
+            <span
+              data-process-line-h
+              style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+              class="block"
+            >
+              De l'audit
+            </span>
+            <span
+              data-process-line-h
+              style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+              class="block text-[var(--color-graphite)]"
+            >
+              à la diffusion.
+            </span>
+          </h2>
+        </div>
+      </div>
+
+      <div
+        class="mt-16 md:mt-24 md:pl-[calc(25%+3.5rem)] lg:mt-28 lg:pl-[calc(16.666%+5rem)]"
+      >
+        <div data-process-track class="relative">
+          <span
+            class="absolute left-[1.375rem] top-[1.375rem] bottom-[1.375rem] w-px bg-[var(--color-border)]"
+            aria-hidden="true"></span>
+          <span
+            data-process-progress
+            style="transform:scaleY(0);transform-origin:top;will-change:transform;"
+            class="absolute left-[1.375rem] top-[1.375rem] bottom-[1.375rem] w-px bg-[var(--color-bordeaux)]"
+            aria-hidden="true"></span>
+
+          <ol class="space-y-14 md:space-y-20">
+            {steps.map((s) => (
+              <li
+                data-process-step
+                style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+                class="group relative grid grid-cols-[2.75rem_1fr] gap-x-6 md:gap-x-10"
+              >
+                <span
+                  class="process-badge relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-ivory)] font-display text-[0.8125rem] tracking-[0.04em] text-[var(--color-graphite)]"
+                >
+                  {s.n}
+                </span>
+                <div class="process-content pt-1.5">
+                  <h3 class="font-display text-[1.375rem] font-light tracking-[-0.01em] text-[var(--color-ink)] md:text-[1.625rem]">
+                    {s.title}
+                  </h3>
+                  <p class="mt-3 max-w-[54ch] text-[1rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.0625rem]">
+                    {s.desc}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div
+          data-process-cta
+          style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
+          class="mt-16 md:mt-20"
+        >
+          <a
+            href="#audit"
+            class="group inline-flex items-center gap-3 bg-[var(--color-ink)] px-7 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-white transition-colors duration-300 hover:bg-black"
+          >
+            <span>Commencer par l'audit offert</span>
+            <svg
+              width="16"
+              height="10"
+              viewBox="0 0 16 10"
+              fill="none"
+              class="transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              <path
+                d="M0 5h14m0 0L10 1m4 4l-4 4"
+                stroke="currentColor"
+                stroke-width="1.4"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-badge {
+    transition:
+      background-color 450ms ease,
+      border-color 450ms ease,
+      color 450ms ease,
+      transform 450ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .process-content {
+    transition: opacity 450ms ease;
+    opacity: 0.5;
+  }
+  [data-process-step].is-active .process-badge {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+    color: #ffffff;
+    transform: scale(1.12);
+  }
+  [data-process-step].is-active .process-content {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .process-content {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const steps = gsap.utils.toArray<HTMLElement>("[data-process-step]");
+
+  if (reduceMotion) {
+    document
+      .querySelectorAll<HTMLElement>(
+        "[data-process-eyebrow], [data-process-line-h], [data-process-step], [data-process-cta]"
+      )
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+    const progress = document.querySelector<HTMLElement>(
+      "[data-process-progress]"
+    );
+    if (progress) progress.style.transform = "scaleY(1)";
+    steps.forEach((s) => s.classList.add("is-active"));
+  } else {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "[data-process]",
+        start: "top 78%",
+        once: true,
+      },
+      defaults: { ease: "power3.out" },
+    });
+
+    tl.to("[data-process-eyebrow]", { opacity: 1, y: 0, duration: 0.7 }, 0)
+      .to(
+        "[data-process-line-h]",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.16,
+          ease: "expo.out",
+        },
+        0.15
+      )
+      .to(
+        "[data-process-step]",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.16,
+        },
+        0.55
+      )
+      .to(
+        "[data-process-cta]",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+        },
+        ">-0.2"
+      );
+
+    // Bordeaux progress rail fills as the user scrolls through the steps
+    gsap.to("[data-process-progress]", {
+      scaleY: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "[data-process-track]",
+        start: "top 65%",
+        end: "bottom 65%",
+        scrub: 0.6,
+      },
+    });
+
+    // Focus the eye on the step currently centered in the viewport
+    steps.forEach((step) => {
+      ScrollTrigger.create({
+        trigger: step,
+        start: "top 62%",
+        end: "bottom 42%",
+        onToggle: (self) => {
+          step.classList.toggle("is-active", self.isActive);
+        },
+      });
+    });
+  }
+</script>

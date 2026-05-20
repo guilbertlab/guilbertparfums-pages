@@ -1,0 +1,156 @@
+---
+---
+
+<section
+  data-promise
+  aria-labelledby="promise-title"
+  class="relative bg-[var(--color-ivory)]"
+>
+  <div class="mx-auto max-w-[1480px] px-6 md:px-10">
+    <div class="border-t border-[var(--color-border)] py-24 md:py-32 lg:py-40">
+      <div class="grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-14 lg:gap-x-20">
+        <div class="md:col-span-3 lg:col-span-2">
+          <span
+            data-promise-eyebrow
+            style="opacity:0;transform:translateY(14px);will-change:opacity,transform;"
+            class="block text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite)]"
+          >
+            [03] · La promesse
+          </span>
+        </div>
+
+        <div class="md:col-span-9 lg:col-span-10">
+          <h2
+            id="promise-title"
+            class="font-display font-light leading-[1.08] tracking-[-0.015em] text-[clamp(1.875rem,4.6vw,3.875rem)] text-[var(--color-ink)]"
+          >
+            <span
+              data-promise-line
+              style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+              class="block"
+            >
+              Vos clients oublient ce qu'ils ont vu chez vous.
+            </span>
+            <span
+              data-promise-line
+              style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+              class="block"
+            >
+              Pas ce qu'ils ont senti.
+            </span>
+          </h2>
+
+          <div
+            class="mt-12 grid grid-cols-1 gap-y-7 md:mt-16 md:grid-cols-2 md:gap-x-14 lg:mt-20 lg:gap-x-20"
+          >
+            <p
+              data-promise-p
+              style="opacity:0;transform:translateY(16px);will-change:opacity,transform;"
+              class="text-[1.0625rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.125rem]"
+            >
+              Une odeur reste. Plus longtemps qu'une affiche, plus profondément
+              qu'un visuel. C'est elle qui marque les esprits. Et qui fait
+              revenir.
+            </p>
+            <p
+              data-promise-p
+              style="opacity:0;transform:translateY(16px);will-change:opacity,transform;"
+              class="text-[1.0625rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.125rem]"
+            >
+              Chez Guilbert, nous ne puisons pas dans un catalogue. Nous
+              composons une fragrance à votre image, au Pays de Grasse, en
+              huile de parfum pure. Un parfum qu'aucune autre marque ne porte.
+              Le vôtre.
+            </p>
+          </div>
+
+          <div
+            data-promise-cta
+            style="opacity:0;transform:translateY(16px);will-change:opacity,transform;"
+            class="mt-12 md:mt-16"
+          >
+            <a
+              href="#audit"
+              class="group inline-flex items-center gap-3 bg-[var(--color-ink)] px-7 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-white transition-colors duration-300 hover:bg-black"
+            >
+              <span>Composer ma signature olfactive</span>
+              <svg
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                class="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0 5h14m0 0L10 1m4 4l-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.4"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduceMotion) {
+    document
+      .querySelectorAll<HTMLElement>(
+        "[data-promise-eyebrow], [data-promise-line], [data-promise-p], [data-promise-cta]"
+      )
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  } else {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "[data-promise]",
+        start: "top 78%",
+        once: true,
+      },
+      defaults: { ease: "power3.out" },
+    });
+
+    tl.to("[data-promise-eyebrow]", { opacity: 1, y: 0, duration: 0.7 }, 0)
+      .to(
+        "[data-promise-line]",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+          stagger: 0.18,
+          ease: "expo.out",
+        },
+        0.15
+      )
+      .to(
+        "[data-promise-p]",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          stagger: 0.15,
+        },
+        0.75
+      )
+      .to(
+        "[data-promise-cta]",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+        },
+        1.05
+      );
+  }
+</script>

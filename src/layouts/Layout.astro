@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Guilbert Parfums · Parfums d’ambiance sur-mesure",
+  description = "Maison française de parfums d'ambiance créés à Grasse. Signature olfactive sur-mesure, diffuseurs connectés, partout en France. Audit olfactif offert, sans engagement.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="fr_FR" />
+
+    <link rel="icon" type="image/svg+xml" href="/logo/monogram-noir.svg" />
+
+    <link
+      rel="preload"
+      href="/fonts/Arpona Light.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Arpona Regular.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Arpona Medium.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+  </head>
+
+  <body class="bg-[var(--color-ivory)] text-[var(--color-ink)]">
+    <slot />
+  </body>
+</html>

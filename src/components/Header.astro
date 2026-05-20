@@ -1,0 +1,128 @@
+---
+interface Props {
+  variant?: "over-hero-light" | "over-hero-dark" | "solid";
+}
+const { variant = "over-hero-light" } = Astro.props;
+
+const isDark = variant === "over-hero-dark";
+const tone = isDark ? "text-white/90" : "text-[var(--color-ink)]";
+const logo = isDark ? "/logo/logo-blanc.svg" : "/logo/logo-noir.svg";
+const borderTone = isDark
+  ? "border-white/40"
+  : "border-[var(--color-ink)]/25";
+const hoverBg = isDark
+  ? "hover:bg-white hover:text-[var(--color-ink)]"
+  : "hover:bg-[var(--color-ink)] hover:text-[var(--color-ivory)]";
+---
+
+<header
+  data-header
+  class={`site-header fixed inset-x-0 top-0 z-50 ${tone}`}
+>
+  <div
+    class="header-inner mx-auto flex max-w-[1480px] items-center justify-between px-6 py-5 md:px-10 md:py-7"
+  >
+    <a
+      href="/"
+      class="block reveal"
+      data-reveal="logo"
+      aria-label="Guilbert Parfums"
+    >
+      <img
+        src={logo}
+        alt="Guilbert Parfums"
+        width="237"
+        height="40"
+        class="h-[28px] w-auto md:h-[40px]"
+      />
+    </a>
+
+    <nav class="hidden items-center gap-9 md:flex">
+      <span
+        class="reveal text-[10px] uppercase tracking-[0.18em] opacity-70"
+        data-reveal="meta-left"
+      >
+        Maison française · Partout en France
+      </span>
+      <a
+        href="tel:+33686537497"
+        class="reveal text-[12px] font-medium uppercase tracking-[0.14em] opacity-95 transition-opacity hover:opacity-100"
+        data-reveal="meta-tel"
+      >
+        Appel gratuit
+      </a>
+      <a
+        href="#audit"
+        class={`reveal inline-flex items-center gap-2 border ${borderTone} px-4 py-2.5 text-[11px] uppercase tracking-[0.16em] transition-colors duration-300 ${hoverBg}`}
+        data-reveal="meta-cta"
+      >
+        Audit offert
+      </a>
+    </nav>
+
+    <a
+      href="tel:+33686537497"
+      class="text-[12px] font-medium uppercase tracking-[0.12em] md:hidden"
+    >
+      Appel gratuit
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 400ms ease,
+      backdrop-filter 400ms ease,
+      border-color 400ms ease,
+      box-shadow 400ms ease;
+  }
+
+  .site-header .header-inner {
+    transition: padding 400ms ease;
+  }
+
+  .site-header.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 1px 24px -12px rgba(26, 26, 26, 0.25);
+  }
+
+  @media (min-width: 768px) {
+    .site-header.is-scrolled .header-inner {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .site-header.is-scrolled .header-inner {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  if (header) {
+    let ticking = false;
+    const apply = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 48);
+      ticking = false;
+    };
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(apply);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    apply();
+  }
+</script>

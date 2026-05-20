@@ -1,0 +1,387 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero.png";
+
+const sectors = [
+  "Hôtellerie",
+  "Restauration",
+  "Spa & bien-être",
+  "Retail & boutique",
+  "Bureaux & entreprises",
+  "Architecture d'intérieur",
+  "Autre",
+];
+
+const reassurances = [
+  "Sans engagement",
+  "Réponse sous 24 h",
+  "Partout en France",
+  "À distance ou au showroom",
+];
+---
+
+<section
+  id="audit"
+  data-hero
+  class="relative flex min-h-[100svh] scroll-mt-24 items-center bg-white text-[var(--color-ink)]"
+>
+  <div class="mx-auto w-full max-w-[1480px] px-6 md:px-10">
+    <div
+      class="grid grid-cols-1 gap-y-8 pt-[100px] pb-10 md:pt-[112px] md:pb-12 lg:grid-cols-12 lg:gap-x-14 lg:pt-[120px] lg:pb-14 xl:gap-x-20"
+    >
+      <div class="lg:col-span-6 xl:col-span-6">
+        <p
+          data-reveal="kicker"
+          class="reveal text-[10px] uppercase tracking-[0.24em] text-[var(--color-graphite)]"
+        >
+          Guilbert Parfums · Éveillez vos sens, créez des souvenirs
+        </p>
+
+        <h1
+          data-reveal="h1"
+          class="reveal mt-4 font-display font-light leading-[1.05] tracking-[-0.02em] text-[clamp(1.875rem,3.4vw,3rem)] text-[var(--color-ink)]"
+        >
+          Une signature olfactive sur-mesure pour votre établissement.
+        </h1>
+
+        <p
+          data-reveal="subhead"
+          class="reveal mt-4 max-w-[48ch] text-[0.9375rem] font-light leading-[1.55] text-[var(--color-ink-soft)] md:text-[1rem]"
+        >
+          Maison française de parfums d'ambiance sur-mesure, créés au Pays de
+          Grasse. Diffuseurs connectés, partout en France. Audit offert, sans
+          engagement.
+        </p>
+
+        <ul
+          data-reveal="reassurances"
+          class="reveal mt-5 flex flex-wrap gap-x-6 gap-y-2"
+        >
+          {reassurances.map((r) => (
+            <li class="flex items-center gap-2.5 text-[13px] text-[var(--color-ink-soft)]">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--color-ink)"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                class="shrink-0"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              {r}
+            </li>
+          ))}
+        </ul>
+
+        <div
+          data-reveal="form"
+          class="reveal mt-7 border border-[var(--color-border)] bg-[var(--color-ivory-50)] p-5 shadow-sm md:p-6"
+        >
+          <form
+            name="audit"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            data-audit-form
+            class="space-y-4"
+          >
+            <input type="hidden" name="form-name" value="audit" />
+            <p class="hidden">
+              <label>Ne pas remplir : <input name="bot-field" /></label>
+            </p>
+
+            <div>
+              <label
+                for="audit-nom"
+                class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
+              >
+                Nom complet
+              </label>
+              <input
+                id="audit-nom"
+                name="nom"
+                type="text"
+                required
+                autocomplete="name"
+                placeholder="Votre nom"
+                class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <label
+                  for="audit-email"
+                  class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
+                >
+                  Email professionnel
+                </label>
+                <input
+                  id="audit-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="vous@etablissement.com"
+                  class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="audit-tel"
+                  class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
+                >
+                  Téléphone
+                </label>
+                <input
+                  id="audit-tel"
+                  name="telephone"
+                  type="tel"
+                  required
+                  autocomplete="tel"
+                  inputmode="tel"
+                  placeholder="06 ..."
+                  class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="audit-secteur"
+                class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
+              >
+                Secteur
+              </label>
+              <select
+                id="audit-secteur"
+                name="secteur"
+                required
+                class="audit-input w-full appearance-none rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] outline-none transition-colors"
+              >
+                <option value="" disabled selected>
+                  Sélectionnez votre secteur
+                </option>
+                {sectors.map((s) => (
+                  <option value={s}>{s}</option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              data-audit-submit
+              class="group inline-flex w-full items-center justify-center gap-3 bg-[var(--color-ink)] px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.16em] text-white transition-colors duration-300 hover:bg-black disabled:opacity-60"
+            >
+              <span>Demander mon audit offert</span>
+              <svg
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="none"
+                class="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0 5h14m0 0L10 1m4 4l-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.4"></path>
+              </svg>
+            </button>
+
+            <div
+              class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <p class="text-[12px] leading-relaxed text-[var(--color-stone)]">
+                Vos données servent uniquement à vous recontacter.
+              </p>
+              <a
+                href="tel:+33686537497"
+                class="text-[12px] font-medium uppercase tracking-[0.14em] text-[var(--color-ink)] underline decoration-[var(--color-border)] decoration-1 underline-offset-[5px] transition-colors hover:decoration-[var(--color-ink)]"
+              >
+                Appel gratuit
+              </a>
+            </div>
+          </form>
+
+          <div
+            data-audit-success
+            hidden
+            class="flex min-h-[260px] flex-col items-center justify-center text-center"
+          >
+            <svg
+              width="42"
+              height="42"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--color-ink)"
+              stroke-width="1.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 12l3 3 5-6" />
+            </svg>
+            <p
+              class="mt-6 font-display text-[1.625rem] font-light text-[var(--color-ink)]"
+            >
+              Merci, c'est noté.
+            </p>
+            <p
+              class="mt-3 max-w-[34ch] text-[15px] font-light leading-[1.6] text-[var(--color-ink-soft)]"
+            >
+              Nous revenons vers vous sous 24 h pour caler votre audit
+              olfactif. Une urgence ? Appelez-nous, l'appel est gratuit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-first lg:order-none lg:col-span-6 xl:col-span-6">
+        <div
+          data-reveal="hero-visual"
+          class="reveal h-[220px] overflow-hidden sm:h-[300px] lg:h-full lg:min-h-[480px]"
+        >
+          <Image
+            src={heroImage}
+            alt="Une expérience olfactive Guilbert Parfums"
+            widths={[640, 960, 1280, 1600]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-hero] .audit-input {
+    font-size: 16px;
+  }
+  [data-hero] .audit-input:focus {
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+  }
+  [data-hero] select.audit-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235c5c5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.75rem;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion) {
+    document
+      .querySelectorAll<HTMLElement>(".reveal")
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  } else {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.fromTo(
+      "[data-reveal='hero-visual']",
+      { opacity: 0, scale: 1.04 },
+      { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" },
+      0
+    )
+      .fromTo(
+        "[data-reveal='logo'], [data-reveal='meta-left'], [data-reveal='meta-tel'], [data-reveal='meta-cta']",
+        { y: -10, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.06 },
+        0.2
+      )
+      .fromTo(
+        "[data-reveal='kicker']",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7 },
+        0.3
+      )
+      .fromTo(
+        "[data-reveal='h1']",
+        { y: 22, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.95, ease: "expo.out" },
+        0.4
+      )
+      .fromTo(
+        "[data-reveal='subhead']",
+        { y: 18, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85 },
+        0.62
+      )
+      .fromTo(
+        "[data-reveal='reassurances']",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        0.78
+      )
+      .fromTo(
+        "[data-reveal='form']",
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9 },
+        0.9
+      );
+  }
+
+  // Soumission AJAX (Netlify) sans quitter la page ; fallback natif sans JS.
+  const form = document.querySelector<HTMLFormElement>("[data-audit-form]");
+  const success = document.querySelector<HTMLElement>("[data-audit-success]");
+  const submitBtn = document.querySelector<HTMLButtonElement>(
+    "[data-audit-submit]"
+  );
+
+  if (form && success && submitBtn) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      const labelSpan = submitBtn.querySelector("span");
+      const original = labelSpan?.textContent ?? "";
+      if (labelSpan) labelSpan.textContent = "Envoi…";
+
+      try {
+        const data = new FormData(form);
+        const body = new URLSearchParams(
+          data as unknown as Record<string, string>
+        ).toString();
+
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body,
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        form.setAttribute("hidden", "");
+        success.removeAttribute("hidden");
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (err) {
+        submitBtn.disabled = false;
+        if (labelSpan) labelSpan.textContent = original;
+        alert(
+          "L'envoi n'a pas abouti. Réessayez, ou appelez-nous (appel gratuit)."
+        );
+      }
+    });
+  }
+</script>

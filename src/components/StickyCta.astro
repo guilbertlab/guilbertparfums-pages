@@ -1,0 +1,92 @@
+---
+const HESTIA_URL = "https://hestia.guilbertparfums.com/";
+---
+
+<div
+  data-sticky-cta
+  class="sticky-cta fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-3"
+  aria-hidden="false"
+>
+  <a
+    href={HESTIA_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group inline-flex items-center gap-2 border border-[var(--color-ink)] bg-white px-5 py-3 text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--color-ink)] shadow-sm transition-colors duration-300 hover:bg-[var(--color-ivory-50)]"
+  >
+    Créer mon parfum
+  </a>
+  <a
+    href="#audit"
+    class="group inline-flex items-center gap-2.5 bg-[var(--color-ink)] px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.14em] text-white shadow-md transition-colors duration-300 hover:bg-black"
+  >
+    <span>Audit offert</span>
+    <svg
+      width="15"
+      height="9"
+      viewBox="0 0 16 10"
+      fill="none"
+      class="transition-transform duration-300 group-hover:translate-x-1"
+      aria-hidden="true"
+    >
+      <path d="M0 5h14m0 0L10 1m4 4l-4 4" stroke="currentColor" stroke-width="1.4"
+      ></path>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .sticky-cta {
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition:
+      opacity 320ms ease,
+      transform 320ms ease;
+  }
+  .sticky-cta.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-cta {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const el = document.querySelector<HTMLElement>("[data-sticky-cta]");
+  const footer = document.querySelector<HTMLElement>("[data-final]");
+
+  if (el) {
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      // Apparait après ~70% du premier écran (le formulaire hero n'est plus visible)
+      const pastHero = window.scrollY > window.innerHeight * 0.7;
+      // Se cache quand le footer (CTA final) entre dans le viewport, pour ne pas
+      // doublonner avec son bouton.
+      let footerVisible = false;
+      if (footer) {
+        const r = footer.getBoundingClientRect();
+        footerVisible = r.top < window.innerHeight - 80;
+      }
+      el.classList.toggle("is-visible", pastHero && !footerVisible);
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  }
+</script>

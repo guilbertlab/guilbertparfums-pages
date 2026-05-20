@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* ─── ARPONA — Family signature Guilbert Parfums ────────────────── */
+
+@font-face {
+  font-family: "Arpona";
+  src: url("/fonts/Arpona Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arpona";
+  src: url("/fonts/Arpona Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arpona";
+  src: url("/fonts/Arpona Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arpona";
+  src: url("/fonts/Arpona SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arpona";
+  src: url("/fonts/Arpona Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arpona";
+  src: url("/fonts/Arpona Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── DESIGN TOKENS (Tailwind v4 @theme) ─────────────────────────── */
+
+@theme {
+  --font-sans: "Arpona", "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Arpona", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Palette ─ blanc épuré (aligné guilbertparfums.com) */
+  --color-ivory: #ffffff;
+  --color-ivory-50: #f7f6f4;
+  --color-ivory-100: #f3f2f0;
+  --color-ivory-200: #ececea;
+  --color-ivory-300: #e2e1de;
+
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #2a2a2a;
+  --color-graphite: #5c5c5c;
+  --color-stone: #8a8580;
+  --color-border: #e6e5e2;
+
+  --color-bordeaux: #7a1f2b;
+  --color-bordeaux-deep: #5e1620;
+  --color-bordeaux-soft: #a44551;
+
+  /* Easings */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ─── BASE STYLES ─────────────────────────────────────────────────── */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: #ffffff;
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+/* Angles vifs partout — reprend le style du site guilbertparfums.com */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* ─── UTILITIES — Editorial typography ────────────────────────────── */
+
+@utility eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
+/* Reveal-on-scroll initial states — JS opts-in via .reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: opacity, transform;
+}
+
+.reveal-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(110%);
+  will-change: opacity, transform;
+}
+
+/* Focus ring adapts to context (ink on light, light on dark) */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal,
+  .reveal-char {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
