@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify Forms — registration only</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <!--
+      Formulaire statique invisible servant uniquement à enregistrer le
+      formulaire "audit" auprès de Netlify Forms au build. Les soumissions
+      réelles sont faites par le formulaire dans AuditForm.astro (Hero),
+      validées par Netlify contre cette définition via le champ form-name.
+      Champs à garder strictement alignés avec AuditForm.astro.
+    -->
+    <form
+      name="audit"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="nom" />
+      <input type="email" name="email" />
+      <input type="tel" name="telephone" />
+      <select name="secteur">
+        <option value=""></option>
+      </select>
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>
