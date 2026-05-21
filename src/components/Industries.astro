@@ -1,0 +1,169 @@
+---
+import { Image } from "astro:assets";
+import imgHotel from "../assets/hall-hotel-diffuseur-guilbert.jpg";
+import imgBoutique from "../assets/boutique-spa-pharmacie.jpg";
+import imgAuto from "../assets/concession-automobile.jpg";
+import imgArchi from "../assets/cabinet-architecte-interieur.jpg";
+import imgBureaux from "../assets/open-space-bureaux.jpg";
+
+type Industry = {
+  name: string;
+  line: string;
+  image: ImageMetadata;
+  alt: string;
+};
+
+const industries: Industry[] = [
+  {
+    name: "Hôtellerie",
+    line: "Halls, chambres et spas : une signature qui accueille.",
+    image: imgHotel,
+    alt: "Diffuseur Guilbert Parfums dans le hall d'un hôtel",
+  },
+  {
+    name: "Boutiques, spas & pharmacies",
+    line: "Un univers olfactif qui retient et fait revenir.",
+    image: imgBoutique,
+    alt: "Diffuseur Guilbert Parfums dans une boutique de soins",
+  },
+  {
+    name: "Concessions automobiles",
+    line: "Le prestige se respire dès le showroom.",
+    image: imgAuto,
+    alt: "Diffuseur Guilbert Parfums dans une concession automobile",
+  },
+  {
+    name: "Architecture d'intérieur",
+    line: "Le détail olfactif qui achève un projet.",
+    image: imgArchi,
+    alt: "Diffuseur Guilbert Parfums dans un cabinet d'architecte d'intérieur",
+  },
+  {
+    name: "Bureaux & espaces de travail",
+    line: "Un air maîtrisé pour le confort de tous.",
+    image: imgBureaux,
+    alt: "Diffuseur Guilbert Parfums dans un open-space de bureaux",
+  },
+];
+---
+
+<section
+  data-industries
+  aria-labelledby="industries-title"
+  class="relative border-t border-[var(--color-border)] bg-white"
+>
+  <div class="mx-auto max-w-[1480px] px-6 py-24 md:px-10 md:py-28 lg:py-32">
+    <h2
+      id="industries-title"
+      data-ind-reveal
+      style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
+      class="font-display font-light leading-[1.1] tracking-[-0.015em] text-[clamp(2rem,4vw,3.25rem)] text-[var(--color-ink)]"
+    >
+      Conçu pour votre secteur
+    </h2>
+    <p
+      data-ind-reveal
+      style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+      class="mt-5 max-w-[60ch] text-[1rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.0625rem]"
+    >
+      Nous adaptons la création du parfum et le réglage de la diffusion à chaque
+      type de lieu. Voici nos principaux secteurs : d'autres établissements nous
+      font déjà confiance.
+    </p>
+
+    <ul
+      class="ind-scroll mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:mt-16 md:grid md:grid-cols-5 md:gap-5 md:overflow-visible md:pb-0"
+    >
+      {industries.map((it) => (
+        <li
+          data-ind-card
+          style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+          class="w-[78%] shrink-0 snap-start sm:w-[44%] md:w-auto"
+        >
+          <div class="relative isolate overflow-hidden">
+            <Image
+              src={it.image}
+              alt={it.alt}
+              widths={[360, 540, 720]}
+              sizes="(max-width: 768px) 78vw, 20vw"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/5] w-full object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
+              aria-hidden="true"
+            >
+            </div>
+            <div class="absolute inset-x-0 bottom-0 p-5">
+              <h3
+                class="font-display text-[1.0625rem] font-medium leading-tight text-white"
+              >
+                {it.name}
+              </h3>
+              <p
+                class="mt-1.5 text-[0.8125rem] font-light leading-[1.45] text-white/75"
+              >
+                {it.line}
+              </p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ind-scroll {
+    scrollbar-width: none;
+  }
+  .ind-scroll::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion) {
+    document
+      .querySelectorAll<HTMLElement>("[data-ind-reveal], [data-ind-card]")
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  } else {
+    gsap.to("[data-ind-reveal]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "[data-industries]",
+        start: "top 80%",
+        once: true,
+      },
+    });
+
+    gsap.to("[data-ind-card]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "[data-ind-card]",
+        start: "top 85%",
+        once: true,
+      },
+    });
+  }
+</script>
