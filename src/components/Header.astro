@@ -22,12 +22,7 @@ const hoverBg = isDark
   <div
     class="header-inner mx-auto flex max-w-[1480px] items-center justify-between px-6 py-5 md:px-10 md:py-7"
   >
-    <a
-      href="/"
-      class="block reveal"
-      data-reveal="logo"
-      aria-label="Guilbert Parfums"
-    >
+    <a href="/" class="block" aria-label="Guilbert Parfums">
       <img
         src={logo}
         alt="Guilbert Parfums"
@@ -37,35 +32,35 @@ const hoverBg = isDark
       />
     </a>
 
-    <nav class="hidden items-center gap-9 md:flex">
-      <span
-        class="reveal text-[10px] uppercase tracking-[0.18em] opacity-70"
-        data-reveal="meta-left"
-      >
-        Maison française · Partout en France
-      </span>
+    <div class="flex items-center gap-2 md:gap-3">
       <a
         href="tel:+33686537497"
-        class="reveal text-[12px] font-medium uppercase tracking-[0.14em] opacity-95 transition-opacity hover:opacity-100"
-        data-reveal="meta-tel"
+        aria-label="Appeler Guilbert Parfums"
+        class={`inline-flex items-center justify-center border ${borderTone} p-2.5 transition-colors duration-300 ${hoverBg}`}
       >
-        Appel gratuit
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+          ></path>
+        </svg>
       </a>
       <a
         href="#form"
-        class={`reveal inline-flex items-center gap-2 border ${borderTone} px-4 py-2.5 text-[11px] tracking-[0.01em] transition-colors duration-300 ${hoverBg}`}
-        data-reveal="meta-cta"
+        class="inline-flex items-center bg-[var(--color-ink)] px-5 py-2.5 text-[11px] font-medium tracking-[0.01em] text-white transition-colors duration-300 hover:bg-black"
       >
-        Créer et diffuser mon parfum
+        Devis gratuit
       </a>
-    </nav>
-
-    <a
-      href="tel:+33686537497"
-      class="text-[12px] font-medium uppercase tracking-[0.12em] md:hidden"
-    >
-      Appel gratuit
-    </a>
+    </div>
   </div>
 </header>
 

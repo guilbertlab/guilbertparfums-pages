@@ -9,250 +9,228 @@ const sectors = [
   "Retail & boutique",
   "Bureaux & entreprises",
   "Architecture d'intérieur",
+  "Automobile",
   "Autre",
 ];
 
-const reassurances = [
-  "Sans engagement",
-  "Réponse sous 24 h",
-  "Partout en France",
-  "À distance ou au showroom",
+const bullets = [
+  "Audit olfactif offert, sans engagement",
+  "Réponse sous 24h",
+  "Installation partout en France",
+  "Composé au Pays de Grasse, en huile de parfum pure",
 ];
 ---
 
 <section
   data-hero
-  class="relative flex min-h-[100svh] items-center bg-white text-[var(--color-ink)]"
+  class="relative grid min-h-[100svh] grid-cols-1 bg-white text-[var(--color-ink)] lg:grid-cols-2"
 >
-  <div class="mx-auto w-full max-w-[1480px] px-6 md:px-10">
-    <div
-      class="grid grid-cols-1 gap-y-8 pt-[100px] pb-10 md:pt-[112px] md:pb-12 lg:grid-cols-12 lg:gap-x-14 lg:pt-[120px] lg:pb-14 xl:gap-x-20"
-    >
-      <div class="lg:col-span-6 xl:col-span-6">
-        <p
-          data-reveal="kicker"
-          class="reveal text-[10px] uppercase tracking-[0.24em] text-[var(--color-graphite)]"
+  <div
+    class="flex flex-col justify-center px-6 pb-16 pt-28 md:px-10 lg:px-16 lg:pb-20 lg:pt-32 xl:px-24"
+  >
+    <div class="w-full max-w-[640px]">
+      <h1
+        data-reveal="h1"
+        class="reveal font-display font-light leading-[1.1] tracking-[-0.015em] text-[clamp(1.875rem,3.2vw,2.75rem)] text-[var(--color-ink)]"
+      >
+        Diffuseur de parfum professionnel pour hôtels et lieux d'exception
+      </h1>
+
+      <p
+        data-reveal="subhead"
+        class="reveal mt-5 max-w-[56ch] text-[1rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.0625rem]"
+      >
+        Création sur-mesure au Pays de Grasse. Diffuseur connecté installé chez
+        vous, partout en France. Pensé pour les hôtels, spas, restaurants,
+        magasins et bureaux qui veulent une identité olfactive forte. À partir
+        de 65€/mois, sans engagement.
+      </p>
+
+      <ul data-reveal="bullets" class="reveal mt-7 space-y-2.5">
+        {bullets.map((b) => (
+          <li class="flex items-start gap-2.5 text-[14px] text-[var(--color-ink-soft)]">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--color-ink)"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              class="mt-[2px] shrink-0"
+            >
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            {b}
+          </li>
+        ))}
+      </ul>
+
+      <div
+        id="form"
+        data-reveal="form"
+        class="reveal mt-8 scroll-mt-28 border border-[var(--color-border)] bg-[var(--color-ivory-50)] p-5 shadow-sm md:p-6"
+      >
+        <form
+          name="audit"
+          method="POST"
+          action="/merci"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          data-audit-form
+          class="space-y-4"
         >
-          Guilbert Parfums · Éveillez vos sens, créez des souvenirs
-        </p>
+          <input type="hidden" name="form-name" value="audit" />
+          <p class="hidden">
+            <label>Ne pas remplir : <input name="bot-field" /></label>
+          </p>
 
-        <h1
-          data-reveal="h1"
-          class="reveal mt-4 font-display font-light leading-[1.05] tracking-[-0.02em] text-[clamp(1.875rem,3.4vw,3rem)] text-[var(--color-ink)]"
-        >
-          Une signature olfactive sur-mesure pour votre établissement.
-        </h1>
+          {/* Attribution Ads : rempli côté client au chargement de la page */}
+          <input type="hidden" name="gclid" data-track="gclid" value="" />
+          <input type="hidden" name="utm_source" data-track="utm_source" value="" />
+          <input type="hidden" name="utm_medium" data-track="utm_medium" value="" />
+          <input type="hidden" name="utm_campaign" data-track="utm_campaign" value="" />
+          <input type="hidden" name="utm_term" data-track="utm_term" value="" />
+          <input type="hidden" name="utm_content" data-track="utm_content" value="" />
+          <input type="hidden" name="fbclid" data-track="fbclid" value="" />
+          <input type="hidden" name="msclkid" data-track="msclkid" value="" />
+          <input type="hidden" name="referrer" data-track="referrer" value="" />
+          <input type="hidden" name="landing_url" data-track="landing_url" value="" />
 
-        <p
-          data-reveal="subhead"
-          class="reveal mt-4 max-w-[48ch] text-[0.9375rem] font-light leading-[1.55] text-[var(--color-ink-soft)] md:text-[1rem]"
-        >
-          Maison française de parfums d'ambiance sur-mesure, créés au Pays de
-          Grasse. Diffuseurs connectés, partout en France. Audit olfactif
-          offert, sans engagement.
-        </p>
+          <div>
+            <label
+              for="audit-nom"
+              class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
+            >
+              Nom complet
+            </label>
+            <input
+              id="audit-nom"
+              name="nom"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Votre nom"
+              class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
+            />
+          </div>
 
-        <ul
-          data-reveal="reassurances"
-          class="reveal mt-5 flex flex-wrap gap-x-6 gap-y-2"
-        >
-          {reassurances.map((r) => (
-            <li class="flex items-center gap-2.5 text-[13px] text-[var(--color-ink-soft)]">
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="var(--color-ink)"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                class="shrink-0"
-              >
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
-              {r}
-            </li>
-          ))}
-        </ul>
-
-        <div
-          id="form"
-          data-reveal="form"
-          class="reveal mt-7 scroll-mt-28 border border-[var(--color-border)] bg-[var(--color-ivory-50)] p-5 shadow-sm md:p-6"
-        >
-          <form
-            name="audit"
-            method="POST"
-            action="/merci"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            data-audit-form
-            class="space-y-4"
-          >
-            <input type="hidden" name="form-name" value="audit" />
-            <p class="hidden">
-              <label>Ne pas remplir : <input name="bot-field" /></label>
-            </p>
-
-            {/* Attribution Ads : rempli côté client au chargement de la page */}
-            <input type="hidden" name="gclid" data-track="gclid" value="" />
-            <input type="hidden" name="utm_source" data-track="utm_source" value="" />
-            <input type="hidden" name="utm_medium" data-track="utm_medium" value="" />
-            <input type="hidden" name="utm_campaign" data-track="utm_campaign" value="" />
-            <input type="hidden" name="utm_term" data-track="utm_term" value="" />
-            <input type="hidden" name="utm_content" data-track="utm_content" value="" />
-            <input type="hidden" name="fbclid" data-track="fbclid" value="" />
-            <input type="hidden" name="msclkid" data-track="msclkid" value="" />
-            <input type="hidden" name="referrer" data-track="referrer" value="" />
-            <input type="hidden" name="landing_url" data-track="landing_url" value="" />
-
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label
-                for="audit-nom"
+                for="audit-email"
                 class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
               >
-                Nom complet
+                Email professionnel
               </label>
               <input
-                id="audit-nom"
-                name="nom"
-                type="text"
+                id="audit-email"
+                name="email"
+                type="email"
                 required
-                autocomplete="name"
-                placeholder="Votre nom"
+                autocomplete="email"
+                inputmode="email"
+                placeholder="vous@etablissement.com"
                 class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
               />
             </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label
-                  for="audit-email"
-                  class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
-                >
-                  Email professionnel
-                </label>
-                <input
-                  id="audit-email"
-                  name="email"
-                  type="email"
-                  required
-                  autocomplete="email"
-                  inputmode="email"
-                  placeholder="vous@etablissement.com"
-                  class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
-                />
-              </div>
-
-              <div>
-                <label
-                  for="audit-tel"
-                  class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
-                >
-                  Téléphone
-                </label>
-                <input
-                  id="audit-tel"
-                  name="telephone"
-                  type="tel"
-                  required
-                  autocomplete="tel"
-                  inputmode="tel"
-                  placeholder="06 ..."
-                  class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
-                />
-              </div>
-            </div>
-
             <div>
               <label
-                for="audit-secteur"
+                for="audit-tel"
                 class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
               >
-                Secteur
+                Téléphone
               </label>
-              <select
-                id="audit-secteur"
-                name="secteur"
+              <input
+                id="audit-tel"
+                name="telephone"
+                type="tel"
                 required
-                class="audit-input w-full appearance-none rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] outline-none transition-colors"
-              >
-                <option value="" disabled selected>
-                  Sélectionnez votre secteur
-                </option>
-                {sectors.map((s) => (
-                  <option value={s}>{s}</option>
-                ))}
-              </select>
+                autocomplete="tel"
+                inputmode="tel"
+                placeholder="06 ..."
+                class="audit-input w-full rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] placeholder:text-[var(--color-stone)] outline-none transition-colors"
+              />
             </div>
+          </div>
 
-            <button
-              type="submit"
-              data-audit-submit
-              class="group inline-flex w-full items-center justify-center gap-3 bg-[var(--color-ink)] px-7 py-3.5 text-[12px] font-medium tracking-[0.01em] text-white transition-colors duration-300 hover:bg-black disabled:opacity-60"
+          <div>
+            <label
+              for="audit-secteur"
+              class="mb-1.5 block text-[11px] uppercase tracking-[0.16em] text-[var(--color-graphite)]"
             >
-              <span>Créer et diffuser mon parfum</span>
-              <svg
-                width="16"
-                height="10"
-                viewBox="0 0 16 10"
-                fill="none"
-                class="transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden="true"
-              >
-                <path
-                  d="M0 5h14m0 0L10 1m4 4l-4 4"
-                  stroke="currentColor"
-                  stroke-width="1.4"></path>
-              </svg>
-            </button>
-
-            <p
-              data-form-error
-              hidden
-              role="alert"
-              class="text-[13px] leading-relaxed text-[var(--color-bordeaux)]"
+              Type d'établissement
+            </label>
+            <select
+              id="audit-secteur"
+              name="secteur"
+              required
+              class="audit-input w-full appearance-none rounded-lg border border-[var(--color-border)] bg-white px-4 py-3 text-[var(--color-ink)] outline-none transition-colors"
             >
-              L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.
-            </p>
+              <option value="" disabled selected>
+                Sélectionnez votre type d'établissement
+              </option>
+              {sectors.map((s) => (
+                <option value={s}>{s}</option>
+              ))}
+            </select>
+          </div>
 
-            <div
-              class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+          <button
+            type="submit"
+            data-audit-submit
+            class="group inline-flex w-full items-center justify-center gap-3 bg-[var(--color-ink)] px-7 py-3.5 text-[12px] font-medium tracking-[0.01em] text-white transition-colors duration-300 hover:bg-black disabled:opacity-60"
+          >
+            <span>Créer et diffuser mon parfum</span>
+            <svg
+              width="16"
+              height="10"
+              viewBox="0 0 16 10"
+              fill="none"
+              class="transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
             >
-              <p class="text-[12px] leading-relaxed text-[var(--color-stone)]">
-                Vos données servent uniquement à vous recontacter.
-              </p>
-              <a
-                href="tel:+33686537497"
-                class="text-[12px] font-medium uppercase tracking-[0.14em] text-[var(--color-ink)] underline decoration-[var(--color-border)] decoration-1 underline-offset-[5px] transition-colors hover:decoration-[var(--color-ink)]"
-              >
-                Appel gratuit
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
+              <path
+                d="M0 5h14m0 0L10 1m4 4l-4 4"
+                stroke="currentColor"
+                stroke-width="1.4"></path>
+            </svg>
+          </button>
 
-      <div class="order-first lg:order-none lg:col-span-6 xl:col-span-6">
-        <div
-          data-reveal="hero-visual"
-          class="reveal h-[220px] overflow-hidden sm:h-[300px] lg:h-full lg:min-h-[480px]"
-        >
-          <Image
-            src={heroImage}
-            alt="Une expérience olfactive Guilbert Parfums"
-            widths={[640, 960, 1280, 1600]}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            class="h-full w-full object-cover"
-          />
-        </div>
+          <p
+            data-form-error
+            hidden
+            role="alert"
+            class="text-[13px] leading-relaxed text-[var(--color-bordeaux)]"
+          >
+            L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.
+          </p>
+
+          <p class="text-[12px] leading-relaxed text-[var(--color-stone)]">
+            Vos données servent uniquement à vous recontacter. Pas de spam.
+          </p>
+        </form>
       </div>
     </div>
+  </div>
+
+  <div
+    data-reveal="hero-visual"
+    class="reveal order-first h-[260px] overflow-hidden sm:h-[340px] lg:order-none lg:h-full lg:min-h-[600px]"
+  >
+    <Image
+      src={heroImage}
+      alt="Diffuseur de parfum professionnel dans un lobby d'hôtel haut de gamme"
+      widths={[640, 960, 1280, 1600]}
+      sizes="(max-width: 1024px) 100vw, 50vw"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
   </div>
 </section>
 
@@ -280,56 +258,42 @@ const reassurances = [
   ).matches;
 
   if (reduceMotion) {
-    document
-      .querySelectorAll<HTMLElement>(".reveal")
-      .forEach((el) => {
-        el.style.opacity = "1";
-        el.style.transform = "none";
-      });
+    document.querySelectorAll<HTMLElement>(".reveal").forEach((el) => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
   } else {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     tl.fromTo(
       "[data-reveal='hero-visual']",
-      { opacity: 0, scale: 1.04 },
-      { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" },
+      { opacity: 0 },
+      { opacity: 1, duration: 1.1, ease: "power2.out" },
       0
     )
       .fromTo(
-        "[data-reveal='logo'], [data-reveal='meta-left'], [data-reveal='meta-tel'], [data-reveal='meta-cta']",
-        { y: -10, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.06 },
+        "[data-reveal='h1']",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9 },
         0.2
       )
       .fromTo(
-        "[data-reveal='kicker']",
-        { y: 16, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7 },
-        0.3
-      )
-      .fromTo(
-        "[data-reveal='h1']",
-        { y: 22, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.95, ease: "expo.out" },
-        0.4
-      )
-      .fromTo(
         "[data-reveal='subhead']",
-        { y: 18, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.85 },
-        0.62
-      )
-      .fromTo(
-        "[data-reveal='reassurances']",
         { y: 16, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8 },
-        0.78
+        0.38
+      )
+      .fromTo(
+        "[data-reveal='bullets']",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        0.52
       )
       .fromTo(
         "[data-reveal='form']",
-        { y: 24, opacity: 0 },
+        { y: 22, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.9 },
-        0.9
+        0.64
       );
   }
 
@@ -382,10 +346,8 @@ const reassurances = [
   }
 
   // Attribution Google Ads / UTM : remplit les inputs cachés au chargement.
-  // Persistance via sessionStorage pour survivre aux navigations internes
-  // (ex. allers-retours vers Hestia). Stratégie last-touch : un nouveau param
-  // dans l'URL écrase la valeur stockée. landing_url et referrer gardent la
-  // première valeur vue dans la session.
+  // Persistance via sessionStorage pour survivre aux navigations internes.
+  // Stratégie last-touch : un nouveau param dans l'URL écrase la valeur stockée.
   const TRACK_KEYS = [
     "gclid",
     "utm_source",
@@ -424,7 +386,8 @@ const reassurances = [
     });
 
     if (!merged.landing_url) merged.landing_url = window.location.href;
-    if (!merged.referrer && document.referrer) merged.referrer = document.referrer;
+    if (!merged.referrer && document.referrer)
+      merged.referrer = document.referrer;
 
     saveStored(merged);
 

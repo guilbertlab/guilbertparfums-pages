@@ -41,6 +41,10 @@ cible France entière, conversion = audit olfactif offert.
   (call to value). Casse stricte : première lettre majuscule, reste minuscule, jamais
   `uppercase` / `text-transform`. Tous les CTA pointent vers `#form` (scroll vers le
   formulaire du hero), sauf le bouton de soumission du formulaire lui-même.
+- **Exception Header** : le Header utilise le libellé court « Devis gratuit »
+  (`#form`) + un bouton icône-téléphone seul. Pas d'autre CTA dans le Header.
+- **Hero** : H1 unique de la page, doit contenir le mot-clé Ads « diffuseur de
+  parfum » (Quality Score Google Ads). Les autres sections sont en `<h2>`.
 - Soumission réussie → redirection vers `/merci` (page de confirmation, support du
   tag de conversion Google Ads). Le form a `action="/merci"` (fallback sans JS) et
   le handler AJAX fait `window.location.assign("/merci")`. Erreur → message inline,
