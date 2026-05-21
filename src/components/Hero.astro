@@ -217,8 +217,7 @@ const bullets = [
   </div>
 
   <div
-    data-reveal="hero-visual"
-    class="reveal order-first overflow-hidden pt-[76px] lg:order-none lg:h-full lg:min-h-[600px] lg:pt-0"
+    class="order-first overflow-hidden pt-[50px] lg:order-none lg:h-full lg:min-h-[600px] lg:pt-0"
   >
     <Image
       src={heroImage}
@@ -228,7 +227,7 @@ const bullets = [
       loading="eager"
       fetchpriority="high"
       decoding="async"
-      class="h-[240px] w-full object-cover object-[38%_center] sm:h-[320px] lg:h-full"
+      class="h-[240px] w-full object-cover object-[78%_center] sm:h-[320px] lg:h-full"
     />
   </div>
 </section>
@@ -265,17 +264,11 @@ const bullets = [
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     tl.fromTo(
-      "[data-reveal='hero-visual']",
-      { opacity: 0 },
-      { opacity: 1, duration: 1.1, ease: "power2.out" },
-      0
+      "[data-reveal='h1']",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9 },
+      0.1
     )
-      .fromTo(
-        "[data-reveal='h1']",
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9 },
-        0.2
-      )
       .fromTo(
         "[data-reveal='subhead']",
         { y: 16, opacity: 0 },
