@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ─── ARPONA — Family signature Guilbert Parfums ────────────────── */
+/* ─── ARPONA · Family signature Guilbert Parfums ────────────────── */
 
 @font-face {
   font-family: "Arpona";
@@ -95,14 +95,14 @@ body {
   letter-spacing: 0.005em;
 }
 
-/* Angles vifs partout — reprend le style du site guilbertparfums.com */
+/* Angles vifs partout · reprend le style du site guilbertparfums.com */
 *,
 *::before,
 *::after {
   border-radius: 0 !important;
 }
 
-/* ─── UTILITIES — Editorial typography ────────────────────────────── */
+/* ─── UTILITIES · Editorial typography ────────────────────────────── */
 
 @utility eyebrow {
   font-size: 0.6875rem;
@@ -112,7 +112,7 @@ body {
   color: var(--color-graphite);
 }
 
-/* Reveal-on-scroll initial states — JS opts-in via .reveal */
+/* Reveal-on-scroll initial states · JS opts-in via .reveal */
 .reveal {
   opacity: 0;
   transform: translateY(28px);

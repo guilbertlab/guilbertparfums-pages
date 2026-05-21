@@ -14,7 +14,8 @@ cible France entière, conversion = audit olfactif offert.
   Utiliser `·`, `:`, `,`, `(...)` ou un point selon le cas.
 - **Voix de marque toujours « nous » + vouvoiement** du visiteur. Jamais « on » en voix
   de marque (aligné sur guilbertparfums.com). Les citations clients peuvent rester naturelles.
-- **Pas de numéro de téléphone affiché.** Tout CTA d'appel = texte « Appel gratuit »,
+- **Pas de numéro de téléphone affiché** (exception : la page `/merci`, post-conversion,
+  où il est affiché volontairement). Ailleurs, tout CTA d'appel = texte « Appel gratuit »,
   numéro uniquement dans `href="tel:+33686537497"`.
 - **Cible France entière.** Le showroom parisien est une option, jamais une obligation.
   Mentionner « partout en France », « à distance ou au showroom ».
@@ -34,9 +35,18 @@ cible France entière, conversion = audit olfactif offert.
 
 ## Conversion
 - Le formulaire complet (nom, email, téléphone, secteur ; pas de champ message) est
-  dans le **Hero** (`id="audit"`). Form unique, pas de doublon Netlify.
-- Tous les CTA `#audit` scrollent vers le hero.
-- Conversion tertiaire : simulateur Hestia → `https://hestia.guilbertparfums.com/`.
+  dans le **Hero**. Le conteneur du formulaire porte `id="form"`. Form unique, pas
+  de doublon Netlify.
+- **CTA unique** sur toute la landing : libellé exact « Créer et diffuser mon parfum »
+  (call to value). Casse stricte : première lettre majuscule, reste minuscule, jamais
+  `uppercase` / `text-transform`. Tous les CTA pointent vers `#form` (scroll vers le
+  formulaire du hero), sauf le bouton de soumission du formulaire lui-même.
+- Soumission réussie → redirection vers `/merci` (page de confirmation, support du
+  tag de conversion Google Ads). Le form a `action="/merci"` (fallback sans JS) et
+  le handler AJAX fait `window.location.assign("/merci")`. Erreur → message inline,
+  pas de redirection.
+- Conversion tertiaire : simulateur Hestia → `https://hestia.guilbertparfums.com/`,
+  libellé distinct « Essayer le simulateur » (ne pas réutiliser le CTA principal).
 
 ## Vérification après modification
 - `npm run build` sans erreur.

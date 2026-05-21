@@ -4,11 +4,13 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title = "Guilbert Parfums · Parfums d’ambiance sur-mesure",
-  description = "Maison française de parfums d'ambiance créés à Grasse. Signature olfactive sur-mesure, diffuseurs connectés, partout en France. Audit olfactif offert, sans engagement.",
+  description = "Maison française de parfums d'ambiance créés au Pays de Grasse. Signature olfactive sur-mesure, diffuseurs connectés, partout en France. Audit olfactif offert, sans engagement.",
+  noindex = true,
 } = Astro.props;
 ---
 
@@ -19,7 +21,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="robots" content="noindex, nofollow" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <title>{title}</title>
     <meta name="description" content={description} />

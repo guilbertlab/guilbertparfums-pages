@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Merci · Guilbert Parfums"
+  description="Votre demande a bien été reçue. L'équipe Guilbert Parfums vous recontacte sous 24h."
+  noindex={false}
+>
+  <main
+    class="flex min-h-svh flex-col items-center justify-center bg-white px-6 py-20 text-center"
+  >
+    <a href="/" aria-label="Guilbert Parfums" class="mb-14 md:mb-16">
+      <img
+        src="/logo/logo-noir.svg"
+        alt="Guilbert Parfums"
+        width="237"
+        height="40"
+        class="h-[34px] w-auto md:h-[40px]"
+      />
+    </a>
+
+    <h1
+      class="max-w-[18ch] font-display font-light leading-[1.1] tracking-[-0.015em] text-[clamp(2rem,4.6vw,3.25rem)] text-[var(--color-ink)]"
+    >
+      Merci, votre demande a bien été reçue.
+    </h1>
+
+    <p
+      class="mt-7 max-w-[52ch] text-[1.0625rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.125rem]"
+    >
+      Un membre de l'équipe Guilbert Parfums vous recontacte sous 24h pour
+      organiser votre audit olfactif offert, à distance ou à notre showroom
+      parisien.
+    </p>
+
+    <p class="mt-8 text-[14px] text-[var(--color-graphite)]">
+      Une urgence ? Appelez-nous au{" "}
+      <a
+        href="tel:+33686537497"
+        class="font-medium text-[var(--color-ink)] underline decoration-[var(--color-border)] decoration-1 underline-offset-[5px] transition-colors hover:decoration-[var(--color-ink)]"
+      >
+        06 86 53 74 97
+      </a>
+    </p>
+
+    <a
+      href="/"
+      class="mt-14 text-[12px] tracking-[0.04em] text-[var(--color-graphite)] underline decoration-[var(--color-border)] decoration-1 underline-offset-[5px] transition-colors hover:text-[var(--color-ink)] hover:decoration-[var(--color-ink)] md:mt-16"
+    >
+      Revenir à l'accueil
+    </a>
+  </main>
+</Layout>
