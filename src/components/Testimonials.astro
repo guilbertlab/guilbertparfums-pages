@@ -1,99 +1,64 @@
 ---
-// PLACEHOLDER : témoignages clients réels à intégrer (cf. feuille de route :
-// "Témoignages clients réels disponibles ? A ajouter"). Garder la même
-// structure et remplacer quote / author / role quand les vrais arrivent.
-type Testimonial = {
-  quote: string;
-  author: string;
-  role: string;
-};
-
-const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Nos clients nous parlent de l'odeur avant même de parler du lieu. C'est devenu une partie de notre accueil.",
-    author: "Direction",
-    role: "Groupe hôtelier (placeholder)",
-  },
-  {
-    quote:
-      "Nous avions testé deux prestataires avant. La différence de tenue est nette : le parfum est encore là le soir.",
-    author: "Responsable exploitation",
-    role: "Restaurant (placeholder)",
-  },
-  {
-    quote:
-      "Le pilotage par l'application a réglé un vrai problème : nous baissons pendant le service, nous remontons après.",
-    author: "Direction",
-    role: "Spa (placeholder)",
-  },
+// Chiffres clés en attendant les vrais témoignages clients.
+// Les valeurs « X » sont des placeholders à compléter par le client.
+const stats: { value: string; label: string }[] = [
+  { value: "X", label: "lieux équipés en France" },
+  { value: "X%", label: "de clients qui renouvellent" },
+  { value: "X", label: "années d'expertise" },
 ];
+
+// --- Témoignages réels (à intégrer plus tard) ---------------------------
+// Quand les vrais témoignages sont disponibles, remplir ce tableau et
+// remplacer le bloc <ul> des chiffres par une liste de <figure> :
+//   nom + fonction + établissement + citation + note (étoiles sur 5).
+// type Testimonial = {
+//   quote: string;
+//   name: string;
+//   role: string;
+//   place: string;
+//   rating: number; // 1 à 5
+// };
+// const testimonials: Testimonial[] = [];
+// -----------------------------------------------------------------------
 ---
 
 <section
-  data-testimonials
-  aria-labelledby="testimonials-title"
-  class="relative bg-[var(--color-ivory)]"
+  data-stats
+  aria-labelledby="stats-title"
+  class="relative bg-[var(--color-ivory-50)]"
 >
-  <div class="mx-auto max-w-[1480px] px-6 md:px-10">
-    <div class="border-t border-[var(--color-border)] py-24 md:py-32 lg:py-40">
-      <div class="grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-14 lg:gap-x-20">
-        <div class="md:col-span-3 lg:col-span-2">
+  <div class="mx-auto max-w-[1480px] px-6 py-24 md:px-10 md:py-28 lg:py-32">
+    <h2
+      id="stats-title"
+      data-stats-reveal
+      style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
+      class="font-display font-light leading-[1.1] tracking-[-0.015em] text-[clamp(2rem,4vw,3.25rem)] text-[var(--color-ink)]"
+    >
+      Guilbert en chiffres
+    </h2>
+
+    <ul
+      class="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-3 md:mt-16"
+    >
+      {stats.map((s) => (
+        <li
+          data-stats-item
+          style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+          class="border-t border-[var(--color-border)] pt-7"
+        >
           <span
-            data-tm-eyebrow
-            style="opacity:0;transform:translateY(14px);will-change:opacity,transform;"
-            class="block text-[10px] uppercase tracking-[0.22em] text-[var(--color-graphite)]"
+            class="block font-display text-[clamp(3.25rem,7vw,5rem)] font-light leading-[0.95] text-[var(--color-bordeaux)]"
           >
-            [07] · Témoignages
+            {s.value}
           </span>
-        </div>
-
-        <div class="md:col-span-9 lg:col-span-10">
-          <h2
-            id="testimonials-title"
-            data-tm-title
-            style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
-            class="font-display font-light leading-[1.06] tracking-[-0.015em] text-[clamp(2.25rem,5.4vw,4.5rem)] text-[var(--color-ink)]"
+          <span
+            class="mt-3 block max-w-[18ch] text-[1rem] font-light leading-[1.4] text-[var(--color-ink-soft)]"
           >
-            Nous préférons les laisser parler.
-          </h2>
-        </div>
-      </div>
-
-      <div class="mt-16 md:mt-24 lg:mt-28">
-        <ol>
-          {testimonials.map((t, i) => (
-            <li
-              data-tm-item
-              style="opacity:0;transform:translateY(26px);will-change:opacity,transform;"
-              class:list={[
-                "py-12 md:py-16",
-                i > 0 && "border-t border-[var(--color-border)]",
-              ]}
-            >
-              <figure class="grid grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-x-14 lg:gap-x-20">
-                <span
-                  aria-hidden="true"
-                  class="font-display text-[3.5rem] leading-[0.6] text-[var(--color-bordeaux-soft)] md:col-span-2 md:text-[4.5rem]"
-                >
-                  «
-                </span>
-                <blockquote class="md:col-span-10">
-                  <p class="max-w-[24ch] font-display text-[clamp(1.5rem,3vw,2.5rem)] font-light leading-[1.28] tracking-[-0.01em] text-[var(--color-ink)]">
-                    {t.quote}
-                  </p>
-                  <figcaption class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.2em] text-[var(--color-graphite)]">
-                    <span class="text-[var(--color-ink-soft)]">{t.author}</span>
-                    <span class="text-[var(--color-stone)]">·</span>
-                    <span>{t.role}</span>
-                  </figcaption>
-                </blockquote>
-              </figure>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
+            {s.label}
+          </span>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
 
@@ -108,38 +73,35 @@ const testimonials: Testimonial[] = [
 
   if (reduceMotion) {
     document
-      .querySelectorAll<HTMLElement>(
-        "[data-tm-eyebrow], [data-tm-title], [data-tm-item]"
-      )
+      .querySelectorAll<HTMLElement>("[data-stats-reveal], [data-stats-item]")
       .forEach((el) => {
         el.style.opacity = "1";
         el.style.transform = "none";
       });
   } else {
-    const tl = gsap.timeline({
+    gsap.to("[data-stats-reveal]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
       scrollTrigger: {
-        trigger: "[data-testimonials]",
-        start: "top 78%",
+        trigger: "[data-stats]",
+        start: "top 80%",
         once: true,
       },
-      defaults: { ease: "power3.out" },
     });
 
-    tl.to("[data-tm-eyebrow]", { opacity: 1, y: 0, duration: 0.7 }, 0)
-      .to(
-        "[data-tm-title]",
-        { opacity: 1, y: 0, duration: 0.95, ease: "expo.out" },
-        0.15
-      )
-      .to(
-        "[data-tm-item]",
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.18,
-        },
-        0.55
-      );
+    gsap.to("[data-stats-item]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.14,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "[data-stats-item]",
+        start: "top 84%",
+        once: true,
+      },
+    });
   }
 </script>

@@ -2,28 +2,34 @@
 type Differentiator = {
   title: string;
   desc: string;
+  icon: string;
 };
 
 const differentiators: Differentiator[] = [
   {
     title: "Huile de parfum pure",
-    desc: "La plupart des prestataires diffusent des fragrances diluées. Nous travaillons en huile de parfum concentrée : plus de tenue, plus de profondeur, une présence qui ne s'évente pas.",
+    desc: "Sans dilution, contrairement aux concurrents. Plus de tenue, plus de profondeur, une présence qui ne s'évente pas.",
+    icon: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
   },
   {
-    title: "Depuis le Pays de Grasse",
-    desc: "Chaque création est composée et fabriquée dans le Pays de Grasse, berceau historique de la parfumerie. Rien n'est sous-traité à l'étranger.",
+    title: "Composé au Pays de Grasse",
+    desc: "Berceau historique de la parfumerie. Chaque création est composée en France, rien n'est sous-traité à l'étranger.",
+    icon: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/>',
   },
   {
-    title: "Partout en France",
-    desc: "Nous intervenons dans toute la France, à distance ou depuis notre showroom parisien. L'audit, l'installation et le suivi ne dépendent pas de votre emplacement.",
+    title: "Diffuseur connecté piloté par application",
+    desc: "Intensité, plages horaires, zones : tout se règle depuis votre téléphone, à tout moment.",
+    icon: '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>',
   },
   {
-    title: "Vous gardez le contrôle",
-    desc: "Intensité, plages horaires, zones : tout se règle depuis une application. Le parfum suit votre activité sans intervention de votre part.",
+    title: "Installation partout en France",
+    desc: "Audit, installation et suivi dans toute la France, à distance ou depuis notre showroom parisien.",
+    icon: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
   },
   {
-    title: "Conçu pour vos contraintes",
-    desc: "Surface atypique, ventilation difficile, cadre réglementaire strict : la solution technique se construit autour de votre lieu.",
+    title: "Adapté à vos contraintes techniques",
+    desc: "Surface atypique, ventilation difficile, cadre réglementaire strict : la solution se construit autour de votre lieu.",
+    icon: '<line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="2" x2="6" y1="14" y2="14"/><line x1="10" x2="14" y1="8" y2="8"/><line x1="18" x2="22" y1="16" y2="16"/>',
   },
 ];
 ---
@@ -31,132 +37,77 @@ const differentiators: Differentiator[] = [
 <section
   data-why
   aria-labelledby="why-title"
-  class="relative bg-[var(--color-ink)] text-[var(--color-ivory)]"
+  class="relative bg-[var(--color-ivory-50)]"
 >
-  <div class="mx-auto max-w-[1480px] px-6 md:px-10">
-    <div class="py-24 md:py-32 lg:py-40">
-      <div class="grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-14 lg:gap-x-20">
-        <div class="md:col-span-3 lg:col-span-2">
-          <span
-            data-why-eyebrow
-            style="opacity:0;transform:translateY(14px);will-change:opacity,transform;"
-            class="block text-[10px] uppercase tracking-[0.22em] text-white/45"
-          >
-            [05] · Pourquoi Guilbert
-          </span>
-        </div>
+  <div class="mx-auto max-w-[1480px] px-6 py-24 md:px-10 md:py-28 lg:py-32">
+    <h2
+      id="why-title"
+      data-why-reveal
+      style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
+      class="font-display font-light leading-[1.1] tracking-[-0.015em] text-[clamp(2rem,4vw,3.25rem)] text-[var(--color-ink)]"
+    >
+      Pourquoi Guilbert
+    </h2>
 
-        <div class="md:col-span-9 lg:col-span-10">
-          <h2
-            id="why-title"
-            class="font-display font-light leading-[1.04] tracking-[-0.015em] text-[clamp(2.25rem,5.4vw,4.5rem)] text-[var(--color-ivory)]"
-          >
-            <span
-              data-why-line
-              style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
-              class="block"
-            >
-              Sentez d'abord.
-            </span>
-            <span
-              data-why-line
-              style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
-              class="block text-white/55"
-            >
-              Signez ensuite.
-            </span>
-          </h2>
-
-          <div
-            data-why-address
-            style="opacity:0;transform:translateY(16px);will-change:opacity,transform;"
-            class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 md:mt-10"
-          >
-            <span
-              class="text-[10px] uppercase tracking-[0.22em] text-white/40"
-            >
-              Partout en France
-            </span>
-            <span class="text-[15px] font-light tracking-[0.02em] text-white/80">
-              À distance ou au showroom (Paris 8<sup>e</sup>)
-            </span>
-            <a
-              href="tel:+33686537497"
-              class="group inline-flex items-center gap-2 text-[14px] font-medium tracking-[0.03em] text-[var(--color-ivory)] underline decoration-white/30 decoration-1 underline-offset-[6px] transition-colors hover:decoration-white"
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                ></path>
-              </svg>
-              Appel gratuit
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="mt-16 grid grid-cols-1 gap-x-14 gap-y-px md:mt-24 md:grid-cols-2 lg:mt-28 lg:gap-x-20"
-      >
-        {differentiators.map((d) => (
-          <div
-            data-why-item
-            style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
-            class="border-t border-white/12 py-9 md:py-11"
-          >
-            <span
-              class="block h-px w-8 bg-white/30"
-              aria-hidden="true"
-            />
-            <h3
-              class="mt-6 font-display text-[1.25rem] font-light tracking-[-0.01em] text-[var(--color-ivory)] md:text-[1.375rem]"
-            >
-              {d.title}
-            </h3>
-            <p
-              class="mt-3 max-w-[46ch] text-[0.9375rem] font-light leading-[1.6] text-white/65 md:text-[1rem]"
-            >
-              {d.desc}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div
-        data-why-cta
-        style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
-        class="mt-16 md:mt-20"
-      >
-        <a
-          href="#form"
-          class="group inline-flex items-center gap-3 bg-white px-7 py-4 text-[12px] font-medium tracking-[0.01em] text-[var(--color-ink)] transition-colors duration-300 hover:bg-[var(--color-ivory-50)]"
+    <ul
+      class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 md:mt-16 md:grid-cols-3 md:gap-6"
+    >
+      {differentiators.map((d) => (
+        <li
+          data-why-card
+          style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+          class="flex flex-col border border-[var(--color-border)] bg-white p-7 md:p-8"
         >
-          <span>Créer et diffuser mon parfum</span>
           <svg
-            width="16"
-            height="10"
-            viewBox="0 0 16 10"
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
             fill="none"
-            class="transition-transform duration-300 group-hover:translate-x-1"
+            stroke="var(--color-ink)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
             aria-hidden="true"
+            set:html={d.icon}
+          />
+          <h3
+            class="mt-6 font-display text-[1.1875rem] font-light leading-[1.25] tracking-[-0.01em] text-[var(--color-ink)]"
           >
-            <path
-              d="M0 5h14m0 0L10 1m4 4l-4 4"
-              stroke="currentColor"
-              stroke-width="1.4"></path>
-          </svg>
-        </a>
-      </div>
+            {d.title}
+          </h3>
+          <p
+            class="mt-3 text-[0.9375rem] font-light leading-[1.6] text-[var(--color-ink-soft)]"
+          >
+            {d.desc}
+          </p>
+        </li>
+      ))}
+    </ul>
+
+    <div
+      data-why-reveal
+      style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
+      class="mt-12 md:mt-14"
+    >
+      <a
+        href="#form"
+        class="group inline-flex items-center gap-3 bg-[var(--color-ink)] px-7 py-4 text-[12px] font-medium tracking-[0.01em] text-white transition-colors duration-300 hover:bg-black"
+      >
+        <span>Créer et diffuser mon parfum</span>
+        <svg
+          width="16"
+          height="10"
+          viewBox="0 0 16 10"
+          fill="none"
+          class="transition-transform duration-300 group-hover:translate-x-1"
+          aria-hidden="true"
+        >
+          <path
+            d="M0 5h14m0 0L10 1m4 4l-4 4"
+            stroke="currentColor"
+            stroke-width="1.4"></path>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -172,62 +123,36 @@ const differentiators: Differentiator[] = [
 
   if (reduceMotion) {
     document
-      .querySelectorAll<HTMLElement>(
-        "[data-why-eyebrow], [data-why-line], [data-why-address], [data-why-item], [data-why-cta]"
-      )
+      .querySelectorAll<HTMLElement>("[data-why-reveal], [data-why-card]")
       .forEach((el) => {
         el.style.opacity = "1";
         el.style.transform = "none";
       });
   } else {
-    const tl = gsap.timeline({
+    gsap.to("[data-why-reveal]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: "[data-why]",
         start: "top 78%",
         once: true,
       },
-      defaults: { ease: "power3.out" },
     });
 
-    tl.to("[data-why-eyebrow]", { opacity: 1, y: 0, duration: 0.7 }, 0)
-      .to(
-        "[data-why-line]",
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          stagger: 0.16,
-          ease: "expo.out",
-        },
-        0.15
-      )
-      .to(
-        "[data-why-address]",
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-        },
-        0.5
-      )
-      .to(
-        "[data-why-item]",
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.12,
-        },
-        0.75
-      )
-      .to(
-        "[data-why-cta]",
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-        },
-        ">-0.25"
-      );
+    gsap.to("[data-why-card]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.75,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "[data-why-card]",
+        start: "top 82%",
+        once: true,
+      },
+    });
   }
 </script>
