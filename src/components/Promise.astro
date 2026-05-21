@@ -24,7 +24,7 @@ import vapeur from "../assets/vapeur.png";
           sizes="(max-width: 768px) 100vw, 50vw"
           loading="lazy"
           decoding="async"
-          class="h-[280px] w-full object-cover md:h-[460px] lg:h-[520px]"
+          class="h-[280px] w-full object-cover md:h-[480px] lg:h-[600px]"
         />
       </div>
 
@@ -56,16 +56,16 @@ import vapeur from "../assets/vapeur.png";
         >
           Une odeur reste. Plus longtemps qu'une affiche, plus profondément
           qu'un visuel. C'est elle qui marque les esprits et qui fait revenir
-          vos clients.
+          vos clients. Chez Guilbert, nous composons une fragrance à votre
+          image, au Pays de Grasse, en huile de parfum pure.
         </p>
+
         <p
-          data-promise-p
-          style="opacity:0;transform:translateY(16px);will-change:opacity,transform;"
-          class="mt-5 max-w-[52ch] text-[1.0625rem] font-light leading-[1.6] text-[var(--color-ink-soft)]"
+          data-promise-quote
+          style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+          class="mt-8 max-w-[22ch] border-t border-[var(--color-border)] pt-8 font-display text-[clamp(1.5rem,2.6vw,2rem)] font-light leading-[1.25] tracking-[-0.01em] text-[var(--color-ink)]"
         >
-          Chez Guilbert, nous ne puisons pas dans un catalogue. Nous composons
-          une fragrance à votre image, au Pays de Grasse, en huile de parfum
-          pure. Un parfum qu'aucune autre marque ne porte. Le vôtre.
+          Un parfum qu'aucune autre marque ne porte. Le vôtre.
         </p>
       </div>
     </div>
@@ -84,7 +84,7 @@ import vapeur from "../assets/vapeur.png";
   if (reduceMotion) {
     document
       .querySelectorAll<HTMLElement>(
-        "[data-promise-visual], [data-promise-line], [data-promise-p]"
+        "[data-promise-visual], [data-promise-line], [data-promise-p], [data-promise-quote]"
       )
       .forEach((el) => {
         el.style.opacity = "1";
@@ -112,8 +112,13 @@ import vapeur from "../assets/vapeur.png";
       )
       .to(
         "[data-promise-p]",
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.14 },
-        0.6
+        { opacity: 1, y: 0, duration: 0.8 },
+        0.55
+      )
+      .to(
+        "[data-promise-quote]",
+        { opacity: 1, y: 0, duration: 0.8 },
+        0.72
       );
   }
 </script>

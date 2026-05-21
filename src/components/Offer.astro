@@ -8,6 +8,12 @@ const includes = [
   "Recharges et suivi compris",
   "Pilotage par application",
 ];
+
+const reassurances = [
+  "Audit olfactif offert avant tout devis",
+  "Installation et mise en service incluses",
+  "Sans frais cachés, résiliable à tout moment",
+];
 ---
 
 <section
@@ -25,8 +31,17 @@ const includes = [
       Un diffuseur connecté, votre parfum sur-mesure. À partir de 65€/mois.
     </h2>
 
+    <p
+      data-offer-reveal
+      style="opacity:0;transform:translateY(18px);will-change:opacity,transform;"
+      class="mt-6 max-w-[58ch] text-[1rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.0625rem]"
+    >
+      Tout est compris dans l'abonnement : le matériel, le parfum, les recharges
+      et le suivi. Aucun investissement à l'achat.
+    </p>
+
     <div
-      class="mt-12 grid grid-cols-1 items-stretch gap-y-8 md:mt-16 md:grid-cols-2 md:gap-x-12 lg:gap-x-16"
+      class="mt-10 grid grid-cols-1 items-stretch gap-y-8 md:mt-14 md:grid-cols-2 md:gap-x-12 lg:gap-x-16"
     >
       <div
         data-offer-visual
@@ -106,6 +121,30 @@ const includes = [
             </svg>
           </a>
         </div>
+
+        <ul
+          class="mt-8 space-y-2.5 border-t border-[var(--color-border)] pt-7"
+        >
+          {reassurances.map((r) => (
+            <li class="flex items-start gap-2.5 text-[13px] leading-[1.5] text-[var(--color-graphite)]">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--color-graphite)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                class="mt-[2px] shrink-0"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              {r}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>

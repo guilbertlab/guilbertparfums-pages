@@ -40,7 +40,7 @@ const pillars: Pillar[] = [
 <section
   data-pillars
   aria-labelledby="pillars-title"
-  class="relative bg-white"
+  class="relative bg-[var(--color-ivory-50)]"
 >
   <div class="mx-auto max-w-[1480px] px-6 py-24 md:px-10 md:py-28 lg:py-32">
     <h2
@@ -71,12 +71,13 @@ const pillars: Pillar[] = [
     </h2>
 
     <ul
-      class="mt-14 grid grid-cols-1 gap-x-10 gap-y-12 md:mt-20 md:grid-cols-3 md:gap-x-12"
+      class="pillars-scroll mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:mt-20 md:grid md:grid-cols-3 md:gap-x-12 md:overflow-visible md:pb-0"
     >
       {pillars.map((p) => (
         <li
           data-pillar-card
           style="opacity:0;transform:translateY(26px);will-change:opacity,transform;"
+          class="w-[85%] shrink-0 snap-start sm:w-[60%] md:w-auto"
         >
           <div class="overflow-hidden">
             <Image
@@ -109,6 +110,15 @@ const pillars: Pillar[] = [
     </ul>
   </div>
 </section>
+
+<style>
+  .pillars-scroll {
+    scrollbar-width: none;
+  }
+  .pillars-scroll::-webkit-scrollbar {
+    display: none;
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";
