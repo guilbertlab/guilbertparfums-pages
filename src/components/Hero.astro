@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import heroImage from "../assets/hero-diffuseur-hotel-v2.jpg";
+import heroImage from "../assets/hero-diffuseur-hotel-v3.jpg";
 
 const sectors = [
   "Hôtellerie",
@@ -35,6 +35,20 @@ const bullets = [
       >
         Spécialiste de la diffusion de parfums pour les professionnels
       </h1>
+      {/* H1 dynamique : ?title=Mon-titre remplace le H1 (les tirets deviennent des espaces) */}
+      <script is:inline>
+        (function () {
+          try {
+            var raw = new URLSearchParams(window.location.search).get("title");
+            if (!raw) return;
+            var text = raw.replace(/-+/g, " ").replace(/\s+/g, " ").trim();
+            if (!text) return;
+            if (text.length > 120) text = text.slice(0, 120);
+            var h1 = document.querySelector('[data-reveal="h1"]');
+            if (h1) h1.textContent = text;
+          } catch (e) {}
+        })();
+      </script>
 
       <p
         data-reveal="subhead"
