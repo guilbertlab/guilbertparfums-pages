@@ -8,10 +8,12 @@ interface Props {
 }
 
 const {
-  title = "Guilbert Parfums · Parfums d’ambiance sur-mesure",
+  title = "Guilbert Parfums - Diffusion de parfums pour professionnels",
   description = "Maison française de parfums d'ambiance fabriqués en France, à Grasse, berceau historique de la parfumerie. Signature olfactive sur-mesure, diffuseurs connectés, partout en France. Audit olfactif offert, sans engagement.",
   noindex = true,
 } = Astro.props;
+
+const ogImage = new URL("/og-image.jpg", Astro.site).href;
 ---
 
 <!doctype html>
@@ -30,6 +32,15 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1448" />
+    <meta property="og:image:height" content="1086" />
+    <meta property="og:image:alt" content="Diffuseur de parfum Guilbert Parfums" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <link rel="icon" type="image/svg+xml" href="/logo/monogram-noir.svg" />
 
