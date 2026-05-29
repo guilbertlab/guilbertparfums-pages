@@ -26,23 +26,23 @@ const fr = (n: number, d: number) => n.toFixed(d).replace(".", ",");
 <section
   data-olfa
   aria-labelledby="olfa-title"
-  class="relative overflow-hidden"
+  class="relative"
 >
-  <Image
-    src={bg}
-    alt=""
-    aria-hidden="true"
-    widths={[768, 1280, 1920]}
-    sizes="100vw"
-    loading="lazy"
-    decoding="async"
-    class="absolute inset-0 h-full w-full scale-110 object-cover blur-[7px]"
-  />
-  <div
-    class="absolute inset-0"
-    style="background:linear-gradient(180deg, rgba(26,26,26,0.55) 0%, rgba(26,26,26,0.42) 45%, rgba(26,26,26,0.58) 100%);"
-    aria-hidden="true"
-  >
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <Image
+      src={bg}
+      alt=""
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 h-full w-full scale-110 object-cover blur-[7px]"
+    />
+    <div
+      class="absolute inset-0"
+      style="background:linear-gradient(180deg, rgba(26,26,26,0.55) 0%, rgba(26,26,26,0.42) 45%, rgba(26,26,26,0.58) 100%);"
+    >
+    </div>
   </div>
 
   <div class="relative mx-auto max-w-[1480px] px-6 py-20 md:px-10 md:py-28 lg:py-32">
@@ -73,13 +73,13 @@ const fr = (n: number, d: number) => n.toFixed(d).replace(".", ",");
 
       <ul
         data-olfa-grid
-        class="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 md:mt-14"
+        class="mt-12 grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3 md:mt-14"
       >
-        {stats.map((s) => (
+        {stats.map((s, i) => (
           <li
             data-olfa-item
-            style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
-            class="group border-t border-[var(--color-border)] pt-6"
+            style={`opacity:0;transform:translateY(24px);will-change:opacity,transform;--olfa-top:${88 + i * 18}px;`}
+            class="olfa-item group pt-6 sm:border-t sm:border-[var(--color-border)]"
           >
             <span
               data-count
@@ -111,6 +111,20 @@ const fr = (n: number, d: number) => n.toFixed(d).replace(".", ",");
     </div>
   </div>
 </section>
+
+<style>
+  /* Mobile : les stats deviennent des cartes qui s'empilent au scroll. */
+  @media (max-width: 639px) {
+    .olfa-item {
+      position: sticky;
+      top: var(--olfa-top, 88px);
+      background: #fff;
+      border: 1px solid var(--color-border);
+      padding: 1.5rem;
+      box-shadow: 0 -14px 34px -16px rgba(0, 0, 0, 0.28);
+    }
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";
