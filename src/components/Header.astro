@@ -6,7 +6,7 @@ const { variant = "over-hero-light" } = Astro.props;
 
 const isDark = variant === "over-hero-dark";
 const tone = isDark ? "text-white/90" : "text-[var(--color-ink)]";
-const logo = isDark ? "/logo/logo-blanc.svg" : "/logo/logo-noir.svg";
+const logo = "/logo/logo-guilbert.png";
 const borderTone = isDark
   ? "border-white/40"
   : "border-[var(--color-ink)]/25";
@@ -26,9 +26,9 @@ const hoverBg = isDark
       <img
         src={logo}
         alt="Guilbert Parfums"
-        width="237"
+        width="54"
         height="40"
-        class="h-[24px] w-auto md:h-[40px]"
+        class="h-[40px] w-auto md:h-[64px]"
       />
     </a>
 

@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+import bg from "../assets/simulator.png";
+
+type Stat = {
+  prefix: string;
+  target: number;
+  decimals: number;
+  suffix: string;
+  label: string;
+};
+
+// Repères issus des études sur le marketing olfactif / sensoriel.
+const stats: Stat[] = [
+  { prefix: "+", target: 20, decimals: 0, suffix: " %", label: "de temps passé dans un lieu doté d'une signature olfactive" },
+  { prefix: "+", target: 78, decimals: 0, suffix: " %", label: "d'intention de revenir dans l'établissement" },
+  { prefix: "×", target: 6.5, decimals: 1, suffix: "", label: "les souvenirs liés à une odeur sont plus forts que les autres" },
+  { prefix: "+", target: 15, decimals: 0, suffix: " %", label: "de fidélisation avec une stratégie olfactive bien définie" },
+  { prefix: "+", target: 40, decimals: 0, suffix: " %", label: "de perception positive du lieu en ambiance parfumée" },
+  { prefix: "", target: 65, decimals: 0, suffix: " %", label: "des émotions quotidiennes sont influencées par l'odorat" },
+];
+
+const fr = (n: number, d: number) => n.toFixed(d).replace(".", ",");
+---
+
+<section
+  data-olfa
+  aria-labelledby="olfa-title"
+  class="relative overflow-hidden"
+>
+  <Image
+    src={bg}
+    alt=""
+    aria-hidden="true"
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 h-full w-full scale-110 object-cover blur-[7px]"
+  />
+  <div
+    class="absolute inset-0"
+    style="background:linear-gradient(180deg, rgba(26,26,26,0.55) 0%, rgba(26,26,26,0.42) 45%, rgba(26,26,26,0.58) 100%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-[1480px] px-6 py-20 md:px-10 md:py-28 lg:py-32">
+    <div
+      data-olfa-card
+      style="opacity:0;transform:translateY(28px);will-change:opacity,transform;"
+      class="mx-auto max-w-[1120px] bg-white px-6 py-12 shadow-[0_30px_80px_-24px_rgba(0,0,0,0.5)] md:px-12 md:py-14 lg:px-16 lg:py-16"
+    >
+      <p
+        class="text-[11px] uppercase tracking-[0.22em] text-[var(--color-bordeaux)]"
+      >
+        Le pouvoir de l'olfactif
+      </p>
+
+      <h2
+        id="olfa-title"
+        class="mt-5 max-w-[22ch] font-display font-light leading-[1.1] tracking-[-0.015em] text-[clamp(1.85rem,3.6vw,2.85rem)] text-[var(--color-ink)]"
+      >
+        Une ambiance olfactive change la perception d'un lieu
+      </h2>
+
+      <p
+        class="mt-5 max-w-[58ch] text-[1rem] font-light leading-[1.6] text-[var(--color-ink-soft)] md:text-[1.0625rem]"
+      >
+        Dans les lieux accueillant du public, le parfum agit sur le temps de
+        présence, la mémoire et l'envie de revenir. Quelques repères mesurés.
+      </p>
+
+      <ul
+        data-olfa-grid
+        class="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 md:mt-14"
+      >
+        {stats.map((s) => (
+          <li
+            data-olfa-item
+            style="opacity:0;transform:translateY(24px);will-change:opacity,transform;"
+            class="group border-t border-[var(--color-border)] pt-6"
+          >
+            <span
+              data-count
+              data-prefix={s.prefix}
+              data-target={s.target}
+              data-decimals={s.decimals}
+              data-suffix={s.suffix}
+              class="block font-display text-[clamp(2.75rem,5.5vw,4rem)] font-light leading-[0.95] text-[var(--color-bordeaux)] tabular-nums"
+            >
+              {s.prefix}{fr(s.target, s.decimals)}{s.suffix}
+            </span>
+            <span
+              aria-hidden="true"
+              class="mt-3.5 block h-[2px] w-10 origin-left bg-[var(--color-bordeaux-soft)] transition-[width] duration-300 ease-out group-hover:w-16"
+            >
+            </span>
+            <span
+              class="mt-4 block max-w-[26ch] text-[0.9375rem] font-light leading-[1.45] text-[var(--color-ink-soft)] md:text-[1rem]"
+            >
+              {s.label}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-12 text-[12px] font-light text-[var(--color-graphite)]">
+        D'après les études sur le marketing olfactif et sensoriel.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const counters = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-count]")
+  );
+
+  const formatFr = (n: number, decimals: number) =>
+    n.toFixed(decimals).replace(".", ",");
+
+  const renderCount = (el: HTMLElement, value: number) => {
+    const prefix = el.dataset.prefix ?? "";
+    const suffix = el.dataset.suffix ?? "";
+    const decimals = Number(el.dataset.decimals ?? "0");
+    el.textContent = `${prefix}${formatFr(value, decimals)}${suffix}`;
+  };
+
+  if (reduceMotion) {
+    document
+      .querySelectorAll<HTMLElement>("[data-olfa-card], [data-olfa-item]")
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  } else {
+    // Les chiffres démarrent à zéro, puis grimpent à l'entrée de la section.
+    counters.forEach((el) => renderCount(el, 0));
+
+    gsap.to("[data-olfa-card]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "[data-olfa]",
+        start: "top 80%",
+        once: true,
+      },
+    });
+
+    gsap.to("[data-olfa-item]", {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "[data-olfa-item]",
+        start: "top 88%",
+        once: true,
+      },
+    });
+
+    ScrollTrigger.create({
+      trigger: "[data-olfa-grid]",
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        counters.forEach((el, i) => {
+          const target = Number(el.dataset.target ?? "0");
+          const obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 2,
+            delay: i * 0.1,
+            ease: "power2.out",
+            onUpdate: () => renderCount(el, obj.val),
+          });
+        });
+      },
+    });
+  }
+</script>

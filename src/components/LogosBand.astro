@@ -5,6 +5,7 @@ type Reference = {
   width: number;
   height: number;
   bigger?: boolean;
+  medium?: boolean;
 };
 
 const references: Reference[] = [
@@ -12,7 +13,7 @@ const references: Reference[] = [
   { alt: "Imperial Treasure", file: "logo-imperial-treasure.png", width: 1072, height: 452 },
   { alt: "Grupo Hotusa", file: "logo-grupo-hotusa.png", width: 500, height: 150 },
   { alt: "Hôtel Langlois", file: "logo-hotel-langlois.png", width: 275, height: 183 },
-  { alt: "Chinese Business Club", file: "logo-chinese-business-club.png", width: 290, height: 158 },
+  { alt: "Chinese Business Club", file: "logo-chinese-business-club.png", width: 290, height: 158, medium: true },
   { alt: "Agora", file: "logo-agora.png", width: 200, height: 200, bigger: true },
   { alt: "Xanlite", file: "logo-xanlite.png", width: 222, height: 227, bigger: true },
 ];
@@ -41,7 +42,7 @@ const references: Reference[] = [
             height={ref.height}
             loading="lazy"
             decoding="async"
-            class={`logo-reference w-auto object-contain ${ref.bigger ? "h-[56px] md:h-[76px] lg:h-[84px]" : "h-6 md:h-7 lg:h-8"}`}
+            class={`logo-reference w-auto object-contain ${ref.bigger ? "h-[56px] md:h-[76px] lg:h-[84px]" : ref.medium ? "h-9 md:h-11 lg:h-12" : "h-6 md:h-7 lg:h-8"}`}
           />
         </li>
       ))}
