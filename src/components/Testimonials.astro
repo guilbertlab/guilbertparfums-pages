@@ -3,8 +3,7 @@
 // Valeurs PROVISOIRES à faire valider / corriger par le client.
 const stats: { value: string; label: string }[] = [
   { value: "80", label: "lieux équipés en France" },
-  { value: "92 %", label: "de clients qui renouvellent" },
-  { value: "5", label: "années d'expertise" },
+  { value: "99 %", label: "de clients qui renouvellent" },
 ];
 
 // --- Témoignages réels (à intégrer plus tard) ---------------------------
@@ -34,11 +33,11 @@ const stats: { value: string; label: string }[] = [
       style="opacity:0;transform:translateY(20px);will-change:opacity,transform;"
       class="font-display font-light leading-[1.1] tracking-[-0.015em] text-[clamp(2rem,4vw,3.25rem)] text-[var(--color-ink)]"
     >
-      Guilbert en chiffres
+      Guilbert Parfums en chiffres
     </h2>
 
     <ul
-      class="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-3 md:mt-16"
+      class="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 md:mt-16"
     >
       {stats.map((s) => (
         <li
