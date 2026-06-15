@@ -1,0 +1,381 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Date de dernière mise à jour affichée en tête de page (format JJ/MM/AAAA)
+const updated = "15/06/2026";
+---
+
+<Layout
+  title="Politique de confidentialité · Guilbert Parfums"
+  description="Politique de confidentialité de l'application Guilbert Parfums : quelles données nous utilisons, pourquoi, et vos droits, conformément au RGPD."
+  noindex={false}
+>
+  <header class="border-b border-[var(--color-border)]">
+    <div
+      class="mx-auto flex max-w-[760px] items-center justify-between px-6 py-5 md:px-8"
+    >
+      <a href="/" aria-label="Guilbert Parfums" class="block">
+        <img
+          src="/logo/logo-guilbert.png"
+          alt="Guilbert Parfums"
+          width="54"
+          height="40"
+          class="h-[38px] w-auto md:h-[44px]"
+        />
+      </a>
+      <a
+        href="/"
+        class="text-[12px] tracking-[0.04em] text-[var(--color-graphite)] underline decoration-[var(--color-border)] decoration-1 underline-offset-[5px] transition-colors hover:text-[var(--color-ink)] hover:decoration-[var(--color-ink)]"
+      >
+        Retour à l'accueil
+      </a>
+    </div>
+  </header>
+
+  <main class="legal mx-auto max-w-[760px] px-6 pt-16 pb-24 md:px-8 md:pt-20">
+    <div class="border-b border-[var(--color-border)] pb-9">
+      <p class="eyebrow">Guilbert Parfums</p>
+      <h1
+        class="mt-5 font-display font-light leading-[1.05] tracking-[-0.015em] text-[clamp(2.4rem,6vw,3.4rem)] text-[var(--color-ink)]"
+      >
+        Politique de Confidentialité
+      </h1>
+      <p class="mt-5 text-[14px] text-[var(--color-graphite)]">
+        Application mobile &nbsp;·&nbsp; Dernière mise à jour&nbsp;: {updated}
+      </p>
+    </div>
+
+    <p
+      class="mt-10 text-[1.0625rem] font-light leading-[1.7] text-[var(--color-ink)]"
+    >
+      L'application Guilbert Parfums est un outil de service qui vous permet de
+      piloter la diffusion de votre diffuseur de parfum via Bluetooth ou Wi-Fi.
+    </p>
+
+    <p>
+      Elle ne propose aucune vente ni transaction commerciale. Nous appliquons le
+      principe de minimisation des données&nbsp;: nous ne collectons que ce qui est
+      strictement nécessaire au fonctionnement de l'application. Cette politique
+      explique simplement ce que nous faisons de vos données, conformément au
+      Règlement Général sur la Protection des Données (RGPD).
+    </p>
+
+    <section>
+      <h2><span class="num">01</span>Qui sommes-nous</h2>
+      <p>
+        Guilbert Parfums est responsable du traitement des données collectées via
+        cette application.
+      </p>
+      <ul>
+        <li>Adresse&nbsp;: 15 avenue Médéric, 93160 Noisy-le-Sec</li>
+        <li>
+          E-mail&nbsp;: <a href="mailto:contact@guilbertparfums.com"
+            >contact@guilbertparfums.com</a
+          >
+        </li>
+        <li>
+          Téléphone&nbsp;: <a href="tel:+33686537497">06 86 53 74 97</a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">02</span>Les données que nous utilisons</h2>
+      <p>Pour fonctionner, l'application utilise un minimum de données&nbsp;:</p>
+      <ul>
+        <li>
+          <strong>Données de connexion</strong>&nbsp;: informations techniques
+          nécessaires pour détecter votre diffuseur et établir la connexion
+          Bluetooth ou Wi-Fi.
+        </li>
+        <li>
+          <strong>Vos réglages</strong>&nbsp;: vos programmes et préférences de
+          diffusion, enregistrés localement sur votre appareil.
+        </li>
+        <li>
+          <strong>Données techniques</strong>&nbsp;: modèle de votre appareil,
+          version du système et données de diagnostic permettant de corriger
+          d'éventuels problèmes.
+        </li>
+      </ul>
+
+      <h3>Ce que nous ne collectons pas</h3>
+      <div class="nocollect-box mt-2 mb-4 bg-[var(--color-ivory-50)] px-6 py-5">
+        <ul class="nocollect">
+          <li>
+            Aucune donnée bancaire ni de paiement (l'application ne vend rien)
+          </li>
+          <li>Aucune donnée de localisation géographique à des fins de suivi</li>
+          <li>Aucune revente ni location de vos données</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">03</span>Autorisations de l'application</h2>
+      <p>
+        L'application demande certaines autorisations uniquement pour
+        fonctionner&nbsp;:
+      </p>
+      <ul>
+        <li>
+          <strong>Bluetooth</strong>&nbsp;: pour détecter et piloter votre
+          diffuseur.
+        </li>
+        <li>
+          <strong>Wi-Fi / réseau local</strong>&nbsp;: pour communiquer avec un
+          diffuseur connecté à votre réseau.
+        </li>
+        <li>
+          <strong>Localisation</strong> (le cas échéant)&nbsp;: sur Android, le
+          système peut exiger cette autorisation pour permettre la recherche
+          d'appareils Bluetooth à proximité. Elle sert uniquement à
+          cela&nbsp;: nous n'enregistrons jamais votre position géographique.
+        </li>
+      </ul>
+      <p>
+        Vous pouvez gérer ou retirer ces autorisations à tout moment dans les
+        réglages de votre appareil.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="num">04</span>Pourquoi nous utilisons ces données</h2>
+      <ul>
+        <li>Permettre la connexion et le contrôle de votre diffuseur</li>
+        <li>Mémoriser vos réglages de diffusion</li>
+        <li>
+          Assurer le bon fonctionnement, la stabilité et la sécurité de
+          l'application
+        </li>
+        <li>Répondre à vos demandes lorsque vous nous contactez</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">05</span>Partage des données</h2>
+      <p>
+        <span class="highlight"
+          >Nous ne vendons pas et ne partageons pas vos données à des fins
+          publicitaires.</span
+        >
+      </p>
+      <p>Vos données peuvent uniquement être traitées par&nbsp;:</p>
+      <ul>
+        <li>
+          les services techniques nécessaires au fonctionnement de l'application
+          (Google Play Services, services Apple)&nbsp;;
+        </li>
+        <li>
+          le cas échéant, un outil de diagnostic permettant de corriger les
+          bugs&nbsp;;
+        </li>
+        <li>les autorités compétentes, uniquement si la loi l'exige.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">06</span>Aucun suivi publicitaire</h2>
+      <p>
+        Notre application ne vous suit pas à travers d'autres applications ou
+        sites web et n'utilise pas vos données à des fins de publicité ciblée.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="num">07</span>Durée de conservation</h2>
+      <ul>
+        <li>
+          Vos réglages sont conservés sur votre appareil tant que l'application
+          est installée et sont supprimés lorsque vous la désinstallez.
+        </li>
+        <li>
+          Les données techniques nécessaires sont conservées le temps requis pour
+          le bon fonctionnement du service&nbsp;; lorsqu'une obligation légale
+          s'applique, elles sont conservées pendant la durée maximale prévue par
+          la réglementation en vigueur.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">08</span>Sécurité</h2>
+      <p>
+        Nous mettons en œuvre des mesures techniques et organisationnelles
+        appropriées afin de protéger vos données contre tout accès non autorisé,
+        perte ou altération.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="num">09</span>Vos droits</h2>
+      <p>Conformément au RGPD, vous pouvez à tout moment&nbsp;:</p>
+      <ul>
+        <li>accéder à vos données, les corriger ou les supprimer&nbsp;;</li>
+        <li>
+          vous opposer à leur traitement ou en demander la limitation&nbsp;;
+        </li>
+        <li>demander la portabilité de vos données.</li>
+      </ul>
+      <p>
+        Pour exercer vos droits, écrivez-nous à <a
+          href="mailto:contact@guilbertparfums.com"
+          >contact@guilbertparfums.com</a
+        >. Vous disposez également du droit d'introduire une réclamation auprès de
+        la CNIL&nbsp;: <a
+          href="https://www.cnil.fr"
+          target="_blank"
+          rel="noopener">www.cnil.fr</a
+        >.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="num">10</span>Protection des mineurs</h2>
+      <p>
+        L'application ne s'adresse pas aux enfants de moins de 15 ans et ne
+        collecte pas sciemment leurs données personnelles.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="num">11</span>Modifications</h2>
+      <p>
+        Nous pouvons être amenés à mettre à jour cette politique de
+        confidentialité. La date indiquée en haut de page correspond toujours à la
+        dernière version en vigueur.
+      </p>
+    </section>
+
+    <div class="contact-box mt-14 bg-[var(--color-ivory-50)] px-7 py-8 md:px-9 md:py-9">
+      <h2 class="contact-title"><span class="num">12</span>Nous contacter</h2>
+      <p>
+        Pour toute question relative à cette politique ou à vos données&nbsp;:
+      </p>
+      <p><strong>Guilbert Parfums</strong></p>
+      <p>15 avenue Médéric, 93160 Noisy-le-Sec</p>
+      <p>
+        <a href="mailto:contact@guilbertparfums.com"
+          >contact@guilbertparfums.com</a
+        > &nbsp;·&nbsp; <a href="tel:+33686537497">06 86 53 74 97</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="border-t border-[var(--color-border)]">
+    <div class="mx-auto max-w-[760px] px-6 py-10 md:px-8">
+      <p class="text-[13px] text-[var(--color-graphite)]">
+        © 2026 Guilbert Parfums. Tous droits réservés.
+      </p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .legal {
+    font-weight: 300;
+    color: var(--color-ink-soft);
+  }
+
+  .legal p {
+    margin: 0 0 0.9rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .legal section {
+    margin-top: 2.75rem;
+  }
+
+  .legal h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    margin: 0 0 1rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  .legal h2 .num {
+    flex: 0 0 auto;
+    transform: translateY(-2px);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-stone);
+  }
+
+  .legal h3 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .legal ul {
+    list-style: none;
+    margin: 0 0 0.9rem;
+    padding: 0;
+  }
+
+  .legal li {
+    position: relative;
+    margin-bottom: 0.55rem;
+    padding-left: 1.4rem;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .legal li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    background: var(--color-ink);
+  }
+
+  .legal strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .legal .highlight {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .legal a {
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    transition: border-color 0.15s ease;
+  }
+
+  .legal a:hover {
+    border-bottom-color: var(--color-ink);
+  }
+
+  /* Encadré « Ce que nous ne collectons pas » · marqueurs en tiret tracé */
+  .legal .nocollect li {
+    padding-left: 1.2rem;
+  }
+
+  .legal .nocollect li::before {
+    width: 9px;
+    height: 1px;
+    top: 0.85em;
+    background: var(--color-graphite);
+  }
+
+  /* Encadré contact · le titre numéroté reprend le style des sections */
+  .legal .contact-title {
+    margin-top: 0;
+  }
+</style>

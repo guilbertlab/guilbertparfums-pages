@@ -137,11 +137,19 @@ const year = new Date().getFullYear();
             class="h-[50px] w-auto opacity-90 invert"
             loading="lazy"
           />
-          <span
-            class="text-[11px] uppercase tracking-[0.14em] text-white/60 sm:text-right"
-          >
-            Fabriqué en France<br />© {year} Guilbert Parfums
-          </span>
+          <div class="flex flex-col items-start gap-3 sm:items-end">
+            <a
+              href="/politique-confidentialite"
+              class="text-[11px] uppercase tracking-[0.14em] text-white/45 underline decoration-white/20 decoration-1 underline-offset-[4px] transition-colors hover:text-white/85 hover:decoration-white/60"
+            >
+              Politique de confidentialité
+            </a>
+            <span
+              class="text-[11px] uppercase tracking-[0.14em] text-white/60 sm:text-right"
+            >
+              Fabriqué en France<br />© {year} Guilbert Parfums
+            </span>
+          </div>
         </div>
       </div>
     </div>
